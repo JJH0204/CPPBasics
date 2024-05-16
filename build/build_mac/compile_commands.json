@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/Users/admin/Documents/GitHub/CPPBasics/build/build_mac/project_Basics",
-  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/Users/admin/Documents/GitHub/CPPBasics/project_Basics/include -g -DDEBUG -g -std=gnu++17 -arch x86_64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/Cpp_example1.dir/source/example1.cpp.o -c /Users/admin/Documents/GitHub/CPPBasics/project_Basics/source/example1.cpp",
-  "file": "/Users/admin/Documents/GitHub/CPPBasics/project_Basics/source/example1.cpp",
-  "output": "project_Basics/CMakeFiles/Cpp_example1.dir/source/example1.cpp.o"
-}
-]

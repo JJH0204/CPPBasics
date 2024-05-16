@@ -1,5 +1,0 @@
-/Users/admin/Documents/GitHub/CPPBasics/build/build_mac/CMakeFiles/edit_cache.dir
-/Users/admin/Documents/GitHub/CPPBasics/build/build_mac/CMakeFiles/rebuild_cache.dir
-/Users/admin/Documents/GitHub/CPPBasics/build/build_mac/project_Basics/CMakeFiles/Cpp_example1.dir
-/Users/admin/Documents/GitHub/CPPBasics/build/build_mac/project_Basics/CMakeFiles/edit_cache.dir
-/Users/admin/Documents/GitHub/CPPBasics/build/build_mac/project_Basics/CMakeFiles/rebuild_cache.dir
