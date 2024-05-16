@@ -1,0 +1,5 @@
+E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/CMakeFiles/edit_cache.dir
+E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/CMakeFiles/rebuild_cache.dir
+E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/project_Basics/CMakeFiles/Cpp_example1.dir
+E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/project_Basics/CMakeFiles/edit_cache.dir
+E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/project_Basics/CMakeFiles/rebuild_cache.dir
