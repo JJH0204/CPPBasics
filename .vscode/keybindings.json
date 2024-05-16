@@ -2,13 +2,19 @@
     {
         "key": "ctrl+shift+b",
         "command": "workbench.action.tasks.runTask",
-        "args": "CMake Build and Run",
+        "args": "CMake Build",
         "when": "editorTextFocus"
     },
     {
         "key": "ctrl+shift+r",
         "command": "workbench.action.tasks.runTask",
-        "args": "Run Executable",
+        "args": "Run Executable (macOS)",
+        "when": "editorTextFocus && isMac"
+    },
+    {
+        "key": "ctrl+shift+r",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Run Executable (Windows)",
         "when": "editorTextFocus && isWindows"
     }
 ]
