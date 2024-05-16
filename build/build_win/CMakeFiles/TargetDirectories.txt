@@ -1,0 +1,5 @@
+E:/Document/GitHub/CPPBasics/build/build_win/CMakeFiles/edit_cache.dir
+E:/Document/GitHub/CPPBasics/build/build_win/CMakeFiles/rebuild_cache.dir
+E:/Document/GitHub/CPPBasics/build/build_win/project_Basics/CMakeFiles/Cpp_example1.dir
+E:/Document/GitHub/CPPBasics/build/build_win/project_Basics/CMakeFiles/edit_cache.dir
+E:/Document/GitHub/CPPBasics/build/build_win/project_Basics/CMakeFiles/rebuild_cache.dir
