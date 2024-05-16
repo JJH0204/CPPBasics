@@ -304,5 +304,10 @@ TSWLatexianTemp*
 /.obsidian
 /.trash
 /.vscode
+
+# cmake 빌드 관련 파일
 *.dir
-.bin
+*.bin
+*.cmake
+*.yaml
+*.marks
