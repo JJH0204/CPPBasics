@@ -14,13 +14,26 @@ add_compile_options(
     $<$<CXX_COMPILER_ID:Clang>:-finput-charset=UTF-8>
 )
 
+# 디버그 모드 설정
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG -g")
+
+# if(WIN32)
+#     # windows 설정
+#     set(BUILD_DIR "build/build_win")
+# elseif(APPLE)
+#     # mac 설정
+#     set(BUILD_DIR "build/build_mac")
+# else()
+#     # unix 설정
+#     set(BUILD_DIR "build/build_unix")
+# endif()
+
+# 빌드 디렉토리 지정
+# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BUILD_DIR})
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BUILD_DIR})
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BUILD_DIR})
+
 # 서브 프로젝트 추가: project_Basics
 add_subdirectory(project_Basics)
 
-if(WIN32)
-    # windows 설정
 
-elseif(APPLE)
-    # mac 설정
-
-endif()
