@@ -17,23 +17,18 @@ add_compile_options(
 # 디버그 모드 설정
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG -g")
 
-# if(WIN32)
-#     # windows 설정
-#     set(BUILD_DIR "build/build_win")
-# elseif(APPLE)
-#     # mac 설정
-#     set(BUILD_DIR "build/build_mac")
-# else()
-#     # unix 설정
-#     set(BUILD_DIR "build/build_unix")
-# endif()
-
-# 빌드 디렉토리 지정
-# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BUILD_DIR})
-# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BUILD_DIR})
-# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BUILD_DIR})
-
-# 서브 프로젝트 추가: project_Basics
-add_subdirectory(project_Basics)
-
-
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    message(STATUS "Configuring for macOS")
+    # macOS-specific settings
+    # 서브 프로젝트 추가: project_Basics
+    add_subdirectory(project_Basics)
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    message(STATUS "Configuring for Windows")
+    # Windows-specific settings
+    # 서브 프로젝트 추가: project_Basics
+    add_subdirectory(project_Basics)
+else()
+    message(STATUS "Configuring for Other OS")
+    # 서브 프로젝트 추가: project_Basics
+    add_subdirectory(project_Basics)
+endif()
