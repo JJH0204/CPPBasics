@@ -303,7 +303,6 @@ TSWLatexianTemp*
 /.makemd
 /.obsidian
 /.trash
-/.vscode
 
 # cmake 빌드 관련 파일
 *.dir
@@ -311,3 +310,7 @@ TSWLatexianTemp*
 *.cmake
 *.yaml
 *.marks
+*.ninja
+*.check_cache
+*.ninja_deps
+*.ninja_log
