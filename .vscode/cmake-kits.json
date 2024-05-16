@@ -1,0 +1,28 @@
+[
+    {
+        "name": "Win32",
+        "description": "Windows 32-bit build",
+        "generator": "Ninja",
+        "toolchainFile": "",
+        "buildType": "Debug",
+        "cmakeSettings": {
+            "CMAKE_BUILD_TYPE": "Debug"
+        },
+        "environmentVariables": {
+            "buildKit": "build_win"
+        }
+    },
+    {
+        "name": "Mac",
+        "description": "MacOS build",
+        "generator": "Ninja",
+        "toolchainFile": "",
+        "buildType": "Debug",
+        "cmakeSettings": {
+            "CMAKE_BUILD_TYPE": "Debug"
+        },
+        "environmentVariables": {
+            "buildKit": "build_mac"
+        }
+    }
+]
