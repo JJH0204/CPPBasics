@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     std::cout << "Hello Jaeho Jung.\nI'm your PC" << std::endl;
 
     /* 변수에 저장된 값 출력 */
-    std::cout << a << b << c << c << std::endl;
+    std::cout << a << b << c << std::endl;
 
     return 0;
 }
