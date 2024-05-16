@@ -2,5 +2,9 @@
     "cmake.buildDirectory": "${workspaceFolder}/build/${buildKit}",
     "cmake.configureArgs": ["-DCMAKE_BUILD_TYPE=Debug"],
     "cmake.generator": "Ninja",
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "C_Cpp.intelliSenseEngine": "Default",
+    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "C_Cpp.loggingLevel": "Warning"
 }

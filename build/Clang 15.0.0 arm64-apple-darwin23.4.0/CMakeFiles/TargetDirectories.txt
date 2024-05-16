@@ -1,0 +1,5 @@
+/Users/admin/Documents/GitHub/CPPBasics/build/Clang 15.0.0 arm64-apple-darwin23.4.0/CMakeFiles/edit_cache.dir
+/Users/admin/Documents/GitHub/CPPBasics/build/Clang 15.0.0 arm64-apple-darwin23.4.0/CMakeFiles/rebuild_cache.dir
+/Users/admin/Documents/GitHub/CPPBasics/build/Clang 15.0.0 arm64-apple-darwin23.4.0/project_Basics/CMakeFiles/Cpp_example1.dir
+/Users/admin/Documents/GitHub/CPPBasics/build/Clang 15.0.0 arm64-apple-darwin23.4.0/project_Basics/CMakeFiles/edit_cache.dir
+/Users/admin/Documents/GitHub/CPPBasics/build/Clang 15.0.0 arm64-apple-darwin23.4.0/project_Basics/CMakeFiles/rebuild_cache.dir

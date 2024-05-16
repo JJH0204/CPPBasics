@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/Users/admin/Documents/GitHub/CPPBasics/build/Clang 15.0.0 arm64-apple-darwin23.4.0",
+  "command": "/usr/bin/clang++ -I/Users/admin/Documents/GitHub/CPPBasics/project_Basics/include -g -DDEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o project_Basics/CMakeFiles/Cpp_example1.dir/source/example1.cpp.o -c /Users/admin/Documents/GitHub/CPPBasics/project_Basics/source/example1.cpp",
+  "file": "/Users/admin/Documents/GitHub/CPPBasics/project_Basics/source/example1.cpp",
+  "output": "project_Basics/CMakeFiles/Cpp_example1.dir/source/example1.cpp.o"
+}
+]
