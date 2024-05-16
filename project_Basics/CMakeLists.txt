@@ -8,7 +8,10 @@ include_directories(include)
 file(GLOB SOURCES "source/*.cpp")
 
 # 소스 파일 지정
-add_executable(Cpp_example1 ${SOURCES})
+add_executable(Cpp_example1
+    example1.cpp
+    ${SOURCES}
+)
 
 if(WIN32)
     # windows 설정

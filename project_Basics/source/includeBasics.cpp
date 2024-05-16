@@ -1,6 +1,7 @@
 #include <iostream>
+#include "includeBasics.h"
 
-int main(int argc, char *argv[])
+void ex_main (void)
 {
     /* 변수 정의 및 데이터 저장 */
     int a = 100, b = 200, c = 300;
@@ -9,7 +10,5 @@ int main(int argc, char *argv[])
     std::cout << "Hello Jaeho Jung.\nI'm your PC" << std::endl;
 
     /* 변수에 저장된 값 출력 */
-    std::cout << a << b << c << std::endl;
-
-    return 0;
+    std::cout << a << b << c << c << std::endl;
 }
