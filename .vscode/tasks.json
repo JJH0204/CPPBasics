@@ -2,31 +2,93 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "CMake Configure",
             "type": "shell",
-            "command": "cmake --build ${workspaceFolder}/build/${buildKit}",
+            "windows": {
+                "command": "cmake",
+                "args": [
+                    "-S",
+                    "${workspaceFolder}",
+                    "-B",
+                    "${workspaceFolder}/build/GCC 8.1.0 x86_64-w64-mingw32",
+                    "-G",
+                    "Ninja"
+                ]
+            },
+            "osx": {
+                "command": "cmake",
+                "args": [
+                    "-S",
+                    "${workspaceFolder}",
+                    "-B",
+                    "${workspaceFolder}/build/Clang 15.0.0 arm64-apple-darwin23.4.0",
+                    "-G",
+                    "Ninja"
+                ]
+            },
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Configure the project with CMake"
+        },
+        {
+            "label": "CMake Build",
+            "type": "shell",
+            "windows": {
+                "command": "cmake",
+                "args": [
+                    "--build",
+                    "${workspaceFolder}/build/GCC 8.1.0 x86_64-w64-mingw32"
+                ]
+            },
+            "osx": {
+                "command": "cmake",
+                "args": [
+                    "--build",
+                    "${workspaceFolder}/build/Clang 15.0.0 arm64-apple-darwin23.4.0"
+                ]
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": ["$gcc"],
+            "dependsOn": "CMake Configure",
+            "detail": "Build the project with CMake"
         },
         {
-            "label": "configure",
+            "label": "CMake Build and Run",
+            "dependsOn": "CMake Build",
             "type": "shell",
-            "command": "cmake",
-            "args": [
-                "-DCMAKE_BUILD_TYPE=Debug",
-                "-S",
-                "${workspaceFolder}",
-                "-B",
-                "${workspaceFolder}/build/${buildKit}"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": false
+            "windows": {
+                "command": "${workspaceFolder}/build/GCC 8.1.0 x86_64-w64-mingw32/project_Basics/Cpp_example1.exe"
             },
-            "problemMatcher": ["$gcc"]
+            "osx": {
+                "command": "${workspaceFolder}/build/Clang 15.0.0 arm64-apple-darwin23.4.0/project_Basics/Cpp_example1"
+            },
+            "group": "none",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Run Executable",
+            "type": "shell",
+            "windows": {
+                "command": "${workspaceFolder}/build/GCC 8.1.0 x86_64-w64-mingw32/project_Basics/Cpp_example1.exe"
+            },
+            "osx": {
+                "command": "${workspaceFolder}/build/Clang 15.0.0 arm64-apple-darwin23.4.0/project_Basics/Cpp_example1"
+            },
+            "group": "none",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
         }
     ]
 }
