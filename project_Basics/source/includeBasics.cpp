@@ -1,16 +1,43 @@
 #include <iostream>
 #include "includeBasics.h"
 using namespace std;
+/* 네임스페이스 std를 명시적으로 선언,
+이후 사용하는 cout객체를 네임스페이스 선언없이 호출할 수 있다. */
 
-void ex_main (void)
+/* --- Cpp 기본 : Hello World --- */
+void ex_HelloWorld(void)
 {
-    /* 변수 정의 및 데이터 저장 */
+    // using namespace std;
+    cout << "Hello World" << endl;
+    // endl <- 줄 바꿈 의미( == '\n')
+
+    return; /* 함수 종료 */
+}
+
+#define swap(size, a, b) \
+    do                   \
+    {                    \
+        size temp = a;   \
+        a = b;           \
+        b = temp;        \
+    } while (0)
+
+/* --- Cpp 기본 : 변수 --- */
+void ex_Variable(void)
+{
+    /* 정수형 변수 3개 선언, 각 변수에 100, 200, 300 저장 */
     int a = 100, b = 200, c = 300;
-    string str;
-    /* console output의 약자, 전달 받은 값을 콘솔창에 출력 */
-    cout << "Please input your name: ";
-    cin >> str;
-    cout << "Hi " << str << "~!" << endl;
-    /* 변수에 저장된 값 출력 */
-    cout << a << b << c << c << std::endl;
+
+    /* cout을 이용해 변수에 저장한 값 출력 */
+    cout << a << b << c << endl;
+
+    swap(int, a, b);
+
+    cout << a << b << c << endl;
+
+    swap(int, a, c);
+
+    cout << a << b << c << endl;
+
+    return;
 }
