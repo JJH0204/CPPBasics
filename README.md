@@ -4,4 +4,4 @@
 - cpp 프로젝트 수행
 
 # 1. Cpp Basics
-- [링크](/markdown/Cpp_Basics)
+- [링크](/markdown/Cpp_Basics.md)
