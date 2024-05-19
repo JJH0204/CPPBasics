@@ -3,7 +3,7 @@
 
 int main(int argc, char *argv[])
 {
-    ex_main();
-
+    // ex_HelloWorld();
+    ex_Variable();
     return 0;
 }
