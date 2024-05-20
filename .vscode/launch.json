@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "C++ Launch (Windows)",
+            "name": "Launch Cpp_example (windows)",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}\\build\\GCC 8.1.0 x86_64-w64-mingw32\\Basics\\Cpp_example.exe",
@@ -18,7 +18,7 @@
             }
         },
         {
-            "name": "C++ Launch (macOS)",
+            "name": "Launch Cpp_example (macOS)",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/Clang 15.0.0 arm64-apple-darwin23.4.0/Basics/Cpp_example",
@@ -30,13 +30,51 @@
             "MIMode": "lldb",
             "setupCommands": [
                 {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
+                    "description": "Enable pretty-printing for lldb",
+                    "text": "settings set target.pretty-printing on",
                     "ignoreFailures": true
                 }
             ],
             "preLaunchTask": "CMake Build",
-            "miDebuggerPath": "/usr/bin/lldb",
+            "logging": {
+                "engineLogging": true
+            }
+        },
+        {
+            "name": "Launch OOP (windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\build\\GCC 8.1.0 x86_64-w64-mingw32\\OOP\\OOP.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "preLaunchTask": "CMake Build",
+            "logging": {
+                "moduleLoad": true,
+                "trace": true
+            }
+        },
+        {
+            "name": "Launch OOP (macOS)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Clang 15.0.0 arm64-apple-darwin23.4.0/OOP/OOP",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "lldb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for lldb",
+                    "text": "settings set target.pretty-printing on",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake Build",
             "logging": {
                 "engineLogging": true
             }
