@@ -280,6 +280,11 @@ void ex_string(void)
     s = NewString; /* C 스타일 문자열 Cpp 스타일로 변환 */
     cout << s << endl;
 
+    /* 읽기 쓰기 가능한 char * 문자열 만드는 방법 */
     char *cstyle = new char[s.size() + 1];
-    strcopy(cstyle, s.c_str()); // ?? 뭐지?
+    strcpy(cstyle, s.c_str());
+    cstyle[0] = 'z';
+    cout << "cstyle: " << cstyle << endl;
+
+
 }
