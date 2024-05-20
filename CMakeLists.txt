@@ -21,14 +21,17 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     message(STATUS "Configuring for macOS")
     # macOS-specific settings
     # 서브 프로젝트 추가: project_Basics
-    add_subdirectory(project_Basics)
+    add_subdirectory(Basics)
+    add_subdirectory(OOP)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     message(STATUS "Configuring for Windows")
     # Windows-specific settings
     # 서브 프로젝트 추가: project_Basics
-    add_subdirectory(project_Basics)
+    add_subdirectory(Basics)
+    add_subdirectory(OOP)
 else()
     message(STATUS "Configuring for Other OS")
     # 서브 프로젝트 추가: project_Basics
-    add_subdirectory(project_Basics)
+    add_subdirectory(Basics)
+    add_subdirectory(OOP)
 endif()
