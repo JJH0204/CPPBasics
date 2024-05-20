@@ -266,7 +266,7 @@ void ex_string(void)
     cout << s << endl;
 
     cout << (s == "C++ String\nI love it!") << endl; /* 문자열 비교 연산 */
-    cout << (s == "I'm so sexy~") << endl;           /* 문자열 비교 연산 */
+    cout << (s == "I'm so hot") << endl;           /* 문자열 비교 연산 */
 
     cout << s.find(s2) << endl; /* 문자열 검색 */
     // strstr() 과 유사 대신 strstr()은 찾은 위치의 주소를 반환
@@ -276,7 +276,7 @@ void ex_string(void)
 
     const char *cString = s.c_str(); /* Cpp 스타일 문자열을 C 스타일로 변환(읽기용) */
     cout << cString << endl;
-    char *NewString = "new string";
+    const char *NewString = "new string";   /* 문자열 리터럴은 수정할 수 없기 때문에 const char *로 다루는 것을 cpp에서 권장한다. */
     s = NewString; /* C 스타일 문자열 Cpp 스타일로 변환 */
     cout << s << endl;
 
@@ -286,5 +286,22 @@ void ex_string(void)
     cstyle[0] = 'z';
     cout << "cstyle: " << cstyle << endl;
 
+    /* 문자열 입력 */
+    char cs[20];
+    string cpps;
 
+    cin >> cs;
+    cin >> cpps;
+
+    cout << "cs: " << cs << endl;       /* 문자 19개 이상 입력을 받으면 '버퍼 오버플로우' 상태가 된다. (위험)*/
+    cout << "cpps: " << cpps << endl;   /* 문자열 길이 상관없이 입력 받을 수 있다. */
+    /* 단점: 공백을 포함한 문자열 입력을 받을 수 없다. */
+
+    /* 공백을 포함한 문자열 */
+    cin.getline(cs, 20);
+    cin.clear();    /* 지정된 메모리 이상의 문자열 길이를 입력 받았을 때 에러가 발생하게 된다. 이를 보완하는 코드 */
+    getline(cin, cpps);
+    /* getline의 사용방법은 c와 cpp 둘 다르다. */
+    cout << "cs: " << cs << endl;
+    cout << "cpps: " << cpps << endl;
 }
