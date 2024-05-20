@@ -421,3 +421,177 @@ delete[] pArray;    // 할당 크기를 알려주지 않아도 됨
 - C++에서 문자열을 쉽게 다룰 수 있게 해주는 클래스
 - string 해더파일을 포함해야 사용이 가능하다.(#include <string>)
 - [예제코드](../project_Basics/source/includeBasics.cpp#L253)
+
+# 13. 서로 다른 파일에 선언된 동일한 이름의 구조체(변수, 클래스 등등) 사용
+- 선언을 허용하지만 그 구조체들이 서로 다른 내용을 가지고 있을 경우 컴파일 시 문제를 일으킬 수 있습니다.
+- 특히 동일한 이름의 구조체가 포함된 헤더 파일이 여러 소스 파일에서 포함되는 경우, 컴파일러는 이러한 구조체들이 같은 것으로 간주하고 충돌을 일으킬 수 있습니다.
+
+# 13.1. 네임스페이스
+- 네임스페이스를 통해 두 구조체를 구분할 수 있다.
+- 네임스페이스 선언 방법
+```cpp
+// File1.h
+#ifndef FILE1_H
+#define FILE1_H
+
+namespace File1Namespace {
+    struct MyStruct {
+        int a;
+        float b;
+    };
+}
+
+#endif // FILE1_H
+
+// File2.h
+#ifndef FILE2_H
+#define FILE2_H
+
+namespace File2Namespace {
+    struct MyStruct {
+        double c;
+        char d;
+    };
+}
+
+#endif // FILE2_H
+```
+- 원하는 소스 파일에서 네임스페이스를 사용한 호출
+```cpp
+// main.cpp
+#include <iostream>
+#include "File1.h"
+#include "File2.h"
+
+int main() {
+    File1Namespace::MyStruct struct1;
+    struct1.a = 10;
+    struct1.b = 20.5f;
+
+    File2Namespace::MyStruct struct2;
+    struct2.c = 30.5;
+    struct2.d = 'A';
+
+    std::cout << "struct1: " << struct1.a << ", " << struct1.b << std::endl;
+    std::cout << "struct2: " << struct2.c << ", " << struct2.d << std::endl;
+
+    return 0;
+}
+```
+# 13.2. 매크로 선언을 통한 해더 가드
+- [예제코드](../project_Basics/include/includeBasics.h#L1)
+- 매크로를 사용해 동일한 구조체가 서로다른 파일에 포함되어 에러를 발생시키는 것을 방지할 수 있다. (c 도 가능)
+
+# 13.3. #pragma once 선언
+- cpp에서 지원하는 헤더 파일 중복 포함을 방지할 또 다른 방법
+- 헤더 가드와 같이 헤더 파일의 중복 포함을 방지 한다.
+```cpp
+// MyHeader.h
+#pragma once
+
+class MyClass {
+public:
+    void doSomething();
+};
+```
+
+# 14. void *와 템플릿(template)
+- C++의 템플릿(template)은 제네릭 프로그래밍을 지원하는 강력한 기능입니다.
+- 템플릿을 사용하면 데이터 타입에 의존하지 않는 코드를 작성할 수 있어 코드 재사용성을 높이고 중복을 줄일 수 있습니다.
+- 템플릿에는 함수 템플릿과 클래스 템플릿 두 가지 주요 유형이 있습니다.
+
+# 14.1. 함수 템플릿
+- 함수 템플릿은 다양한 데이터 타입을 처리할 수 있는 일반화된 함수를 정의하는 데 사용됩니다.
+- 예를 들어, 두 값을 비교하는 함수를 다음과 같이 정의할 수 있습니다:
+```cpp
+#include <iostream>
+
+template <typename T>
+T getMax(T a, T b) {
+    return (a > b) ? a : b;
+}
+
+int main() {
+    std::cout << getMax(10, 20) << std::endl; // 정수 비교
+    std::cout << getMax(10.5, 20.5) << std::endl; // 실수 비교
+    std::cout << getMax('a', 'z') << std::endl; // 문자 비교
+    return 0;
+}
+```
+- 위의 예제에서 getMax 함수는 T라는 템플릿 타입을 사용하여 정의되었습니다. 
+- 이 함수는 두 값을 비교하여 큰 값을 반환합니다. 
+- 함수가 호출될 때 컴파일러는 제공된 인수의 타입에 맞게 getMax 함수를 인스턴스화합니다.
+
+## 14.2. 클래스 템플릿
+- 클래스 템플릿은 다양한 데이터 타입을 처리할 수 있는 일반화된 클래스를 정의하는 데 사용됩니다. 
+- 예를 들어, 간단한 스택 클래스를 다음과 같이 정의할 수 있습니다:
+```cpp
+#include <iostream>
+#include <vector>
+
+template <typename T>
+class Stack {
+private:
+    std::vector<T> elements;
+
+public:
+    void push(T const& elem) {
+        elements.push_back(elem);
+    }
+
+    void pop() {
+        if (elements.empty()) {
+            std::cerr << "Stack is empty!" << std::endl;
+            return;
+        }
+        elements.pop_back();
+    }
+
+    T top() const {
+        if (elements.empty()) {
+            std::cerr << "Stack is empty!" << std::endl;
+            throw std::out_of_range("Stack<>::top(): empty stack");
+        }
+        return elements.back();
+    }
+
+    bool empty() const {
+        return elements.empty();
+    }
+};
+
+int main() {
+    Stack<int> intStack; // int 타입을 사용하는 스택
+    intStack.push(1);
+    intStack.push(2);
+    std::cout << "Top element: " << intStack.top() << std::endl;
+    intStack.pop();
+    std::cout << "Top element: " << intStack.top() << std::endl;
+
+    Stack<std::string> stringStack; // std::string 타입을 사용하는 스택
+    stringStack.push("Hello");
+    stringStack.push("World");
+    std::cout << "Top element: " << stringStack.top() << std::endl;
+    stringStack.pop();
+    std::cout << "Top element: " << stringStack.top() << std::endl;
+
+    return 0;
+}
+```
+- 위의 예제에서 Stack 클래스는 T라는 템플릿 타입을 사용하여 정의되었습니다. 
+- 이 클래스는 템플릿 타입 T를 사용하여 요소를 저장하고 관리합니다. 
+- intStack과 stringStack은 각각 int와 std::string 타입의 스택을 인스턴스화한 예입니다.
+
+## 14.3. 템플릿의 장점
+1.	재사용성: 템플릿을 사용하면 다양한 데이터 타입을 처리할 수 있는 범용 코드를 작성할 수 있어 코드 재사용성이 높아집니다.
+2.	타입 안전성: 템플릿을 사용하면 컴파일 타임에 타입 검사가 이루어져 타입 안전성이 향상됩니다.
+3.	유연성: 템플릿을 사용하면 함수나 클래스가 다양한 데이터 타입을 처리할 수 있어 유연한 코드를 작성할 수 있습니다.
+
+## 14.4. 템플릿의 단점
+
+1.	컴파일 시간 증가: 템플릿은 컴파일 타임에 인스턴스화되므로 컴파일 시간이 증가할 수 있습니다.
+2.	디버깅의 복잡성: 템플릿 코드의 디버깅은 일반 코드보다 복잡할 수 있습니다.
+3.	코드 복잡성: 템플릿을 사용하는 코드는 초기에는 이해하기 어려울 수 있습니다.
+
+## 14.5. 결론 
+템플릿은 C++의 강력한 기능 중 하나로, 잘 활용하면 코드의 재사용성과 유연성을 크게 향상시킬 수 있습니다.
