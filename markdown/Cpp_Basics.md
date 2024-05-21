@@ -1,6 +1,6 @@
 # 1. Hello World 출력
 
-- [소스코드](../project_Basics/source/includeBasics.cpp#L1)
+- [소스코드](../Basics/source/includeBasics.cpp#L1)
 
 ```cpp
 #include <iostream>
@@ -217,12 +217,12 @@ double b = (double)a;  // C 스타일 형변환
 
 - bitset 라이브러리 추가, (#include <bitset>)
 - "bitset<출력하는 비트 수>(변수)" 방식으로 사용
-- [예제코드](../project_Basics/source/includeBasics.cpp#L105)
+- [예제코드](../Basics/source/includeBasics.cpp#L105)
 
 # 3. 구조체 선언 응용
 
 - c 에서도 가능해 보이긴 하나, 특이해서 기록하는 구조체 선언의 응용 방식
-- [예제코드](../project_Basics/source/includeBasics.cpp#L119)
+- [예제코드](../Basics/source/includeBasics.cpp#L119)
 
 # 4. 빅 엔디안(Big-Endian)과 리틀 엔디안(Little-Endian)
 
@@ -261,7 +261,7 @@ double b = (double)a;  // C 스타일 형변환
 ## 4.3. 예제코드
 
 - C++에서 빅 엔디안과 리틀 엔디안을 확인하는 코드입니다.
-- [예제코드](../project_Basics/source/includeBasics.cpp#L134)
+- [예제코드](../Basics/source/includeBasics.cpp#L134)
 
 # 5. 포인터와 const
 
@@ -299,7 +299,7 @@ p = &iNum_2;    // 수정 불가능
 
 - 기존에 메모리에 할당된 변수에 접근할 수 있는 새로운 변수명을 설정하는 것
 - 포인터와 동일한 동작을 수행하지만, 사용에 주의해야 한다.<br/>운영체제마다 동작이 달라질 수 있다.
-- [예제코드](../project_Basics/source/includeBasics.cpp#L170)
+- [예제코드](../Basics/source/includeBasics.cpp#L170)
 - 주의!: 레퍼런스 변수는 반드시 초기화한 후 사용해야 한다.
 - const 선언을 통해 변수의 안전성을 확보할 수 있다.<br/>const 속성을 가진 레퍼런스만 임시 변수로 생성한 상수를 참조할 수 있게 허용, 함수 호출 등으로 인한 기존 데이터의 변조를 막을 수 있다.
 
@@ -312,7 +312,7 @@ p = &iNum_2;    // 수정 불가능
 # 7. CRT
 
 - c의 표준라이브러리 처럼 c++과 함께 제공되는 라이브러리를 지칭
-- [예제코드](../project_Basics/source/includeBasics.cpp#L204)
+- [예제코드](../Basics/source/includeBasics.cpp#L204)
 
 # 8. 함수 오버로딩(Overloading)
 
@@ -326,7 +326,7 @@ float max(float a, float b);
 - 위 두 함수는 같은 이름이지만 인자가 달라 구별된다.
 - 함수의 인자 부분을 '함수의 시그니처'라고 부른다.
 - 시그니처가 다르면 서로 다른 함수로 구분된다.
-- [예제코드](../project_Basics/source/includeBasics.cpp#L215)
+- [예제코드](../Basics/source/includeBasics.cpp#L215)
 - 반환값으로는 함수를 구분할 수 없다.
 - 레퍼런스로 시그니처를 구분할 수 없다.
 - 인자 값을 전달할 때 데이터 타입을 명시적으로 선언하면 원하는 함수를 실행하기 훨 수월해진다.
@@ -348,7 +348,7 @@ void WhichOne(double c);    // ?WhichOne@@YAXN@Z , 뒤 세번째 문자가 다�
 # 9. 함수의 디폴트 인자(Default Arguments)
 
 - 따로 값을 지정하지 않은 경우 선택하는 인자의 값을 정의 할 수 있다.
-- [예제코드](../project_Basics/source/includeBasics.cpp#L245), [헤더파일](../project_Basics/include/includeBasics.h#15)
+- [예제코드](../Basics/source/includeBasics.cpp#L245), [헤더파일](../project_Basics/include/includeBasics.h#15)
 - 예제에서 볼 수 있듯 디폴트 인자 정의는 함수의 선언에만 추가할 수 있다. (헤더파일에 디폴트 인자 정의된 이유)
 - 디폴트 인자 정의는 함수의 인자들 중에서 오른쪽에서 왼쪽으로 순차적으로 진행된다.
 - 중간에 디폴트 인자가 비거나 건너뛰는 것은 불가능하다.
@@ -420,7 +420,7 @@ delete[] pArray;    // 할당 크기를 알려주지 않아도 됨
 - basic_string이라는 클래스를 typedef를 사용해 재정의한 타입
 - C++에서 문자열을 쉽게 다룰 수 있게 해주는 클래스
 - string 해더파일을 포함해야 사용이 가능하다.(#include <string>)
-- [예제코드](../project_Basics/source/includeBasics.cpp#L253)
+- [예제코드](../Basics/source/includeBasics.cpp#L253)
 
 # 13. 서로 다른 파일에 선언된 동일한 이름의 구조체(변수, 클래스 등등) 사용
 - 선언을 허용하지만 그 구조체들이 서로 다른 내용을 가지고 있을 경우 컴파일 시 문제를 일으킬 수 있습니다.
@@ -479,7 +479,7 @@ int main() {
 }
 ```
 # 13.2. 매크로 선언을 통한 해더 가드
-- [예제코드](../project_Basics/include/includeBasics.h#L1)
+- [예제코드](../Basics/include/includeBasics.h#L1)
 - 매크로를 사용해 동일한 구조체가 서로다른 파일에 포함되어 에러를 발생시키는 것을 방지할 수 있다. (c 도 가능)
 
 # 13.3. #pragma once 선언
