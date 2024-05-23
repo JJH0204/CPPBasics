@@ -1,5 +1,7 @@
 # OOP(Object-Oriented Programming), 객체지향 프로그래밍
 - [OOP.cpp](../OOP/OOP.cpp)
+- [includeNode.cpp](../OOP/source/includeNode.cpp)
+- [includeNode.h](../OOP/include/includeNode.h)
 - [includeOOP.cpp](../OOP/source/includeOOP.cpp)
 - [includeOOP.h](../OOP/include/includeOOP.h)
 
@@ -26,7 +28,7 @@
 ## 2. 객체지향 기본
 - c언어로 연습한 자료구조를 복습하면서 객체지향에 대한 개념을 정리한다.
 ### 2.1. 클래스 정의
-- [source](../OOP/include/includeOOP.h#L3)
+- [source](../OOP/include/includeNode.h#L3)
 - class 클래스이름 {...}; :
   - class 키워드 이후 작성된 단어가 해당 클래스의 이름
   - 이후 대활호 내에 정의되는 정보는 클래스의 고유한 속성
@@ -44,4 +46,168 @@
   - c++ 부터 구조체도 멤버 함수를 설정할 수 있긴 하다.
 
 ### 2.2. 객체 생성과 사용
-- [source](../OOP/include/includeOOP.h#L3)
+- [source](../OOP/include/includeNode.cpp#L5)
+  - Node 객체를 사용하는 간단한 예제 함수를 구현했다.
+  - 노드 객체를 선언한 후 데이터를 저장하고 출력과 값 변환까지 해보는 예제이다.
+  - 이 처럼 객체를 정의한 후 사용은 일반 변수처럼 사용할 수 있다.
+- [Line_9](../OOP/include/includeNode.cpp#L9)
+  - 'intNode.get_data<int>()'를 통해 Node 변수에 접근 제한이 설정된 변수 _data에 저장된 값을 받아와 사용하게 된다.<br/>물론 이 함수는 템플릿 함수로 자세한 사용법 정리는 추후에 진행한다.
+  - 구조체의 멤버 변수에 접근하는 방식과 같이 멤버 함수(또는 변수)의 호출은 객체이름 뒤에 (.)를 사용하고 포인터 객체인 경우 (->)를 사용해 접근한다.
+- [Line_27](../OOP/include/includeNode.cpp#L27)
+  - 꼭 클래스의 {대활호}안에 함수에 대한 모든 것을 정의할 필요는 없다.
+  - 클래스 정의 밖에서 함수의 이름 앞에 해당 함수를 멤버로 삼는 클래스의 명칭을 작성한 후<br/>범위 지정 연산자(::)로 구분하면 해당 클래스의 멤버 변수임을 컴파일러가 인지하고 컴파일한다.
+
+### 2.3. 템플릿
+#### 2.3.1. 개요
+- 연결 리스트 구현 중 저장할 데이터의 자료형을 명시적으로 정의하는 것은 자료구조의 사용성을 떨어뜨리는 것 같아 방법을 찾고 있었다.
+- 제네릭 프로그래밍에 대한 정보를 찾았고 적용하기 위해 void * 를 사용해 저장하는 데이터의 주소값을 기록하는 방식으로 구현했었다.<br/>(C 언어로 자료구조 구현하던 때)
+- void *를 사용하는 것은 쉽지만 매우 위험한 작업이었다.
+  - 저장하는 데이터의 자료형을 기억하고 있어야 하는 점
+  - 자칫 메모리 참조를 실수하면 메모리 참조 에러가 발생 등등
+- void *를 사용하지 않고 제네릭 프로그래밍 기법을 사용할 수 있는 방법이 C++ 의 템플릿 이다.
+- 해당 문서를 서술하는 순서상 템플릿은 차후에 설명해야 하지만 이 기법은 먼저 이해하고 넘어가도 좋을 것 같아 서술한다.
+#### 2.3.2. 템플릿 이란?
+- 코드를 작성할 때 데이터 타입에 의존하지 않는 일반적인 코드를 작성하게 해주는 C++의 키워드다.
+- 코드의 재사용성을 높이고 타입의 안전성을 보장할 수 있다.
+- 함수와 클래스에 사용할 수 있다.
+
+#### 2.3.3. 함수 템플릿
+```cpp
+#include <iostream>
+
+template <typename T> // 템플릿 함수의 선언 및 정의
+T add(T a, T b) {
+    return a + b;
+}
+
+int main() {
+    std::cout << add<int>(2, 3) << std::endl;     // 5
+    std::cout << add<double>(2.5, 3.5) << std::endl; // 6.0
+    return 0;
+}
+```
+- 함수 템플릿은 여러 타입에 대해 동작하는 일반적인 함수를 정의할 수 있게 한다.
+- 주의!
+  - 헤더 파일로 코드를 나눠서 관리할 경우 템플릿 함수는 필요한 곳에 인스턴스화할 수 있도록 헤더파일에 정의하고 관리해야 한다.
+  - 하나의 정의 규칙(ODR)을 준수할 수 있어 코드가 올바르게 컴파일되고 링크될 수 있다.
+
+#### 2.3.4. 클래스 템플릿
+- [includeNode.h](../OOP/include/includeNode.h)에 정의된 Node 클래스가 클래스 템플릿이다.
+- 클래스의 멤버 변수와 멤버 함수가 여러 타입에 대해 동작할 수 있도록 한다.
+```cpp
+#include <iostream>
+
+template <typename T>
+class Box {
+private:
+    T data;
+public:
+    Box(T d) : data(d) {}
+
+    void set_data(T d) {
+        data = d;
+    }
+
+    T get_data() {
+        return data;
+    }
+};
+
+int main() {
+    Box<int> intBox(123);
+    Box<std::string> strBox("Hello");
+
+    std::cout << intBox.get_data() << std::endl;  // 123
+    std::cout << strBox.get_data() << std::endl;  // Hello
+
+    return 0;
+}
+```
+
+#### 2.3.5. 템플릿 특수화
+- 특정 타입에 대해 템플릿을 특수화하여 다른 기능을 제공할 수 있다.
+```cpp
+#include <iostream>
+
+/* 템플릿 클래스 */
+template <typename T>
+class Printer {
+public:
+    void print(T data) {
+        std::cout << "Data: " << data << std::endl;
+    }
+};
+
+// char* 타입에 대한 특수화
+template <>
+class Printer<char*> {
+public:
+    void print(char* data) {
+        std::cout << "String: " << data << std::endl;
+    }
+};
+
+int main() {
+    Printer<int> intPrinter;
+    Printer<char*> charPrinter;
+
+    intPrinter.print(100);             // Data: 100
+    charPrinter.print("Hello, World"); // String: Hello, World
+
+    return 0;
+}
+```
+#### 2.3.6. 주의사항
+- 컴파일 시간 증가: 다양한 타입에 대해 인스턴스화됨으로 컴파일 시간이 증가한다.
+- 디버깅 어려움: 코드 이해가 어려울 수 있기 때문에 주석을 잘 작성해야 한다.
+
+### 2.4. 생성자와 소멸자
+- 생성자(Constructors): 객체를 생성할 때 자동으로 호출되는 함수, 주로 객체가 생성될 때 수행할 기능을 정의
+- 소멸자(Destructors): 객체가 소멸될 때 자동으로 호출되는 함수, 생성자와 반대의 개념
+
+#### 2.4.1. 생성자의 사용
+- [생성자 선언](../OOP/include/includeNode.h#L13)
+- [생성자 정의](../OOP/source/includeNode.cpp#L26)
+- 생성자의 특징
+  - 생성자는 클래스와 동일한 이름이다.
+  - 반환값이 없다.
+  - 디폴트 생성자란 매개변수가 없는 생성자를 지칭한다.
+  - 인자가 있는 생성자는 객체 생성과 동시에 원하는 값으로 멤버 변수를 초기화 할 수 있다.
+  - 복사 생성자(Copy Constructor)는 다른 객체로 부터 값을 복사해서 초기화 하는 데 사용하는 생성자다.([includeNode.cpp#L25](../OOP/source/includeNode.cpp#L25))
+- 멤버 변수 중 const datatype를 가졌거나 레퍼런스 타입이 있다면 반드시 생성자가 필요하다.
+  - 생성 후 값의 수정이 불가능하기에 초기화시 값을 설정해야 한다.
+  - 생성자의 초기화 리스트를 사용해 멤버 변수를 초기화 할 수 있다.
+    - 생성자의 원형과 중괄호 사이에 콜론(:)으로 구분해 작성한다.
+    - 대활호{}내 소스보다 먼저 실행되어 안전한 초기화를 도와준다.
+    - 인자가 있는 생성자 및 복사 생성자에도 사용이 가능하다.
+- [임시 객체](../OOP/source/includeNode.cpp#L19)
+  - Node(intNode.get_data() + intNode2.get_data())
+  - 두 객체의 데이터의 합을 생성자를 이용해 임시 객체를 만든 예제 코드다.
+  - 임시 객체를 이용해 intNode3를 복사 생성자를 이용해 초기화 했다.
+
+#### 2.4.2. 소멸자의 사용
+- 생성자의 이름 앞에 틸드(~)를 붙인 형태를 갖는다.
+- 생성자와 반대로 객체가 메모리에서 삭제 될때 실행되어 필요한 기능을 수행한다.
+- 동적으로 할당된 메모리를 멤버 변수로 가지고 있을 경우 해당 멤버 변수의 메모리를 할당해제하는데 사용할 수 있다.
+
+### 2.5. 접근 제어(Access Control)
+- 특정 멤버를 객체 외부에서 호출하거나 실행할 수 있게 할 것인지 결정하는 객체지향에서 중요한 키워드다.
+  - public: 객체 외부에서 접근 가능
+  - protected, private: 객체 외부에서 접근 불가능
+- 같은 키워드를 여러번 사용할 수 있다.
+- 생성자와 소멸자는 public으로 설정하는 것이 일반적이다.
+  - private으로 설정할 경우 객체 생성을 할 수 없게된다.
+- 가능한 멤버 변수는 private 또는 protected로 설정하는 것이 좋다.
+- 구조체는 아무 설정이 없으면 public, 클래스는 private로 동작한다.
+#### 2.5.1. 접근자
+- public으로 지정한 멤버 함수를 이용해 private으로 설정된 멤버 변수에 간접 접근이 가능하다.
+- 일반 함수와 같지만 임의로 부르기 편하게 이를 접근자라 이름을 붙이고 사용한다.
+- 접근자를 통해 멤버 변수에 잘못된 값 대입을 막을 수 있다.
+- 생정자를 미리 만든 접근자를 활용해 멤버 변수의 값 초기화에 안전성을 부여할 수 있다.
+
+### 2.6. 정적 멤버(static members)
+- 모든 객체가 공유하는 멤버
+- 클래스 자체와 관련된 정보, 전체 객체와 관련된 정보를 다루고 관리하는데 유용하다.
+- 정적 멤버는 객체의 멤버가 아닌 클래스의 멤버로 구분되며 서로 다르다.
+- 정적 멤버 함수는 일반 멤버에 접근할 수 없다.(중요!)
+- 
