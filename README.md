@@ -4,7 +4,7 @@
 - cpp 프로젝트 수행
 
 # 1. Cpp Basics
-- [링크](/markdown/Cpp_Basics.md)
+- [링크](/markdown/Basics.md)
 
 # 2. OOP
 - [링크](/markdown/OOP.md)

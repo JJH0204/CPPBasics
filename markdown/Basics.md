@@ -1,5 +1,4 @@
 # 1. Hello World 출력
-
 - [소스코드](../Basics/source/includeBasics.cpp#L1)
 
 ```cpp
@@ -296,7 +295,6 @@ p = &iNum_2;    // 수정 불가능
 ```
 
 # 6. 레퍼런스 변수
-
 - 기존에 메모리에 할당된 변수에 접근할 수 있는 새로운 변수명을 설정하는 것
 - 포인터와 동일한 동작을 수행하지만, 사용에 주의해야 한다.<br/>운영체제마다 동작이 달라질 수 있다.
 - [예제코드](../Basics/source/includeBasics.cpp#L170)
