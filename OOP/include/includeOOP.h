@@ -40,14 +40,13 @@ template <typename T>
 void LinkedList<T>::PrintT(void)
 {
     Node<T> *pCurNode = nullptr;
-    int nLoop = 0;
 
-    if ((pCurNode = this->getHeader()) == nullptr)
+    if ((pCurNode = this->getHeader()) == nullptr || this->getCurrent() < 1)
         return;
 
     std::cout << "|index\t|data\t|" << std::endl;
 
-    for (; nLoop < this->getCurrent() && pCurNode != nullptr; nLoop++)
+    for (int nLoop = 0; nLoop < this->getCurrent() && pCurNode != nullptr; nLoop++)
     {
         std::cout << "|" << nLoop << "\t|" << pCurNode->getData() << "\t|" << std::endl;
         pCurNode = pCurNode->getNext();
