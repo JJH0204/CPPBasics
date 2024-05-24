@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     // delete intLinkedList;
     return 0;
 }
-/* TODO: fix error
+/*
 intListedList1:
 |index  |data   |
 |0      |10     |
@@ -35,6 +35,4 @@ intListedList2:
 |1      |20     |
 |2      |30     |
 |3      |40     |
-|4      |1842784576     |
-zsh: segmentation fault
 */
