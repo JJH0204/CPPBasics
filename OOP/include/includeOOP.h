@@ -34,6 +34,9 @@ public:
 
     /* 리스트 복사 */
     void Copy(const LinkedList &temp);
+
+    /* 리스트 정렬 */
+    void Sort(int (*compar)(const T &, const T &));
 };
 
 template <typename T>
@@ -151,6 +154,8 @@ void LinkedList<T>::Destruct(void)
 template <typename T>
 void LinkedList<T>::Copy(const LinkedList<T> &temp)
 {
+    this->setCurrent(0);
+
     if (this == &temp)
         return;
 
@@ -161,3 +166,31 @@ void LinkedList<T>::Copy(const LinkedList<T> &temp)
         pCurrentNode = pCurrentNode->getNext();
     }
 }
+
+template <typename T>
+void LinkedList<T>::Sort(int (*compar)(const T &, const T &))
+{
+    if (this->getHeader() == nullptr || this->getCurrent() < 2)
+        return;
+
+    /* 단순 선택 정렬(버블정렬 알고리즘) */
+    Node<T> *pCurrentNode = this->getHeader();
+    for (int i = 0; i < this->getCurrent() - 1 && pCurrentNode->getNext() != nullptr; i++)
+    {
+        Node<T> *pTargetNode = pCurrentNode->getNext();
+        for (int n = 1; n < this->getCurrent() && pTargetNode != nullptr; n++)
+        {
+            if (compar(pCurrentNode->getData(), pTargetNode->getData()) > 0)
+            {
+                T temp = pCurrentNode->getData();
+                pCurrentNode->setData(pTargetNode->getData());
+                pTargetNode->setData(temp);
+            }
+            pTargetNode = pTargetNode->getNext();
+        }
+        pCurrentNode = pCurrentNode->getNext();
+    }
+}
+
+void exLinkedList1(void);
+void exLinkedList2(void);
