@@ -4,13 +4,37 @@
 int main(int argc, char *argv[])
 {
     // ex_class();
-    LinkedList<int> *intLinkedList = new LinkedList<int>;
-    intLinkedList->Add(Node(10), 0);
-    intLinkedList->Add(Node(20), 1);
-    intLinkedList->Add(30, 2);
-    intLinkedList->Add(Node(40), 3);
-    intLinkedList->PrintT();
-    // intLinkedList->Destruct();
-    delete intLinkedList;
+    LinkedList<int> intLinkedList1;
+    intLinkedList1.Add(10, 0);
+    intLinkedList1.Add(20, 1);
+    intLinkedList1.Add(30, 2);
+    intLinkedList1.Add(40, 3);
+
+    LinkedList<int> intLinkedList2 = intLinkedList1;
+
+    std::cout << "intListedList1:" << std::endl;
+    intLinkedList1.PrintT();
+    std::cout << "intListedList2:" << std::endl;
+    intLinkedList2.PrintT();
+    
+    intLinkedList1.Destruct();
+    intLinkedList2.Destruct();
+    // delete intLinkedList;
     return 0;
 }
+/* TODO: fix error
+intListedList1:
+|index  |data   |
+|0      |10     |
+|1      |20     |
+|2      |30     |
+|3      |40     |
+intListedList2:
+|index  |data   |
+|0      |10     |
+|1      |20     |
+|2      |30     |
+|3      |40     |
+|4      |1842784576     |
+zsh: segmentation fault
+*/
