@@ -76,7 +76,7 @@ void LinkedList<T>::Add(const Node<T> &data, const int index)
         Node<T> *pCurrentNode = this->getHeader();
         for (int i = 1; i < index && pCurrentNode->getNext() != nullptr; i++)
             pCurrentNode = pCurrentNode->getNext();
-        pNewNode->setNext(pCurrentNode->getNext());
+        pNewNode->setNext(pCurrentNode->getNext() == nullptr ? nullptr : pCurrentNode->getNext());
         pCurrentNode->setNext(pNewNode);
     }
     this->setCurrent(this->getCurrent() + 1);
@@ -103,7 +103,7 @@ void LinkedList<T>::Add(const T &data, const int index)
         Node<T> *pCurrentNode = this->getHeader();
         for (int i = 1; i < index && pCurrentNode->getNext() != nullptr; i++)
             pCurrentNode = pCurrentNode->getNext();
-        pNewNode->setNext(pCurrentNode->getNext());
+        pNewNode->setNext(pCurrentNode->getNext() == nullptr ? nullptr : pCurrentNode->getNext());
         pCurrentNode->setNext(pNewNode);
     }
     this->setCurrent(this->getCurrent() + 1);
