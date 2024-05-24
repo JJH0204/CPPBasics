@@ -194,3 +194,10 @@ void LinkedList<T>::Sort(int (*compar)(const T &, const T &))
 
 void exLinkedList1(void);
 void exLinkedList2(void);
+
+template <typename T>
+class Stack
+{
+private:
+public:
+};
