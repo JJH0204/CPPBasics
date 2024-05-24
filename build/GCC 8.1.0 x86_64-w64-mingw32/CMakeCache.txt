@@ -263,13 +263,22 @@ CppProject_IS_TOP_LEVEL:STATIC=ON
 CppProject_SOURCE_DIR:STATIC=E:/Document/GitHub/CPPBasics
 
 //Value Computed by CMake
-project_Basics_BINARY_DIR:STATIC=E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/project_Basics
+OOP_BINARY_DIR:STATIC=E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/OOP
+
+//Value Computed by CMake
+OOP_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+OOP_SOURCE_DIR:STATIC=E:/Document/GitHub/CPPBasics/OOP
+
+//Value Computed by CMake
+project_Basics_BINARY_DIR:STATIC=E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/Basics
 
 //Value Computed by CMake
 project_Basics_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-project_Basics_SOURCE_DIR:STATIC=E:/Document/GitHub/CPPBasics/project_Basics
+project_Basics_SOURCE_DIR:STATIC=E:/Document/GitHub/CPPBasics/Basics
 
 
 ########################
@@ -376,7 +385,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
