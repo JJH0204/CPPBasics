@@ -5,6 +5,6 @@
 
 int main(int argc, char *argv[])
 {
-    exLinkedList2();
+    exStack1();
     return 0;
 }

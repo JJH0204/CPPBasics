@@ -61,3 +61,30 @@ void exLinkedList2(void)
     intLinkedList.PrintT();
     intLinkedList.Destruct();
 }
+
+void exStack1(void)
+{
+    Stack<int> intStack1;
+    intStack1.Push(10);
+    intStack1.Push(20);
+    intStack1.Push(30);
+    intStack1.Push(40);
+    Stack<int> intStack2 = intStack1;
+    intStack1.Push(50);
+
+    std::cout << "intStack1.Peek(): " << intStack1.Peek() << std::endl;
+    std::cout << "intStack2.Pop(): " << intStack2.Pop() << std::endl;
+
+    std::cout << "intStack1:" << std::endl;
+    intStack1.PrintT();
+    std::cout << "intStack2:" << std::endl;
+    intStack2.PrintT();
+
+    intStack1.Destruct();
+    intStack2.Destruct();
+}
+
+void exStack2(void)
+{
+
+}
