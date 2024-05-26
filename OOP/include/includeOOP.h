@@ -309,4 +309,3 @@ void Stack<T>::PrintT(void)
 }
 
 void exStack1(void);
-void exStack2(void);

@@ -83,8 +83,3 @@ void exStack1(void)
     intStack1.Destruct();
     intStack2.Destruct();
 }
-
-void exStack2(void)
-{
-
-}
