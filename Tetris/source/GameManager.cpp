@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include "GameManager.h"
+#include "Tetris.h"
 
 void GameManager::WorkOut(void)
 {
@@ -24,12 +25,16 @@ void GameManager::WorkOut(void)
             this->setState(READY);
             break;
         case READY:
-        /* 3초 카운드 (실제로는 5초) 후 게임 시작 */
+            /* 3초 카운드 (실제로는 5초) 후 게임 시작 */
             this->Countdown5();
             this->setState(RUN);
             break;
         case RUN:
-            std::cout << "is Run!" << std::endl;
+            /* 사용자가 게임을 시작했다. 게임 규칙데로 프로세스를 진행하자 */
+            /* 게임을 진행할 보드 생성 및 초기화 */
+            this->PrintBoard();
+            /* 블럭 */
+
             this->setState(END);
             break;
         }
@@ -72,4 +77,21 @@ void clearTerminal(void)
 #else
     system("clear");
 #endif
+}
+
+void GameManager::PrintBoard(void)
+{
+    for (int i = 0; i < 22; i++)
+    {
+        for (int j = 0; j < 12; j++)
+        {
+            if (this->Board[i][j] == WALL)
+                std::cout << "#";
+            else if (this->Board[i][j] == FULL)
+                std::cout << "@";
+            else
+                std::cout << " ";
+        }
+        std::cout << std::endl;
+    }
 }

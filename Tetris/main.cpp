@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "GameManager.h"
+#include "Tetris.h"
 
 int main(int argc, char *argv[])
 {

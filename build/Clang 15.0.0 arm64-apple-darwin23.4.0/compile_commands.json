@@ -40,5 +40,11 @@
   "command": "/usr/bin/clang++ -I/Users/admin/Documents/GitHub/CPPBasics/Tetris/Tetris -I/Users/admin/Documents/GitHub/CPPBasics/Tetris/PRIVATE -I/Users/admin/Documents/GitHub/CPPBasics/Tetris/include -g -DDEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o Tetris/CMakeFiles/Tetris.dir/source/GameManager.cpp.o -c /Users/admin/Documents/GitHub/CPPBasics/Tetris/source/GameManager.cpp",
   "file": "/Users/admin/Documents/GitHub/CPPBasics/Tetris/source/GameManager.cpp",
   "output": "Tetris/CMakeFiles/Tetris.dir/source/GameManager.cpp.o"
+},
+{
+  "directory": "/Users/admin/Documents/GitHub/CPPBasics/build/Clang 15.0.0 arm64-apple-darwin23.4.0",
+  "command": "/usr/bin/clang++ -I/Users/admin/Documents/GitHub/CPPBasics/Tetris/Tetris -I/Users/admin/Documents/GitHub/CPPBasics/Tetris/PRIVATE -I/Users/admin/Documents/GitHub/CPPBasics/Tetris/include -g -DDEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o Tetris/CMakeFiles/Tetris.dir/source/Tetris.cpp.o -c /Users/admin/Documents/GitHub/CPPBasics/Tetris/source/Tetris.cpp",
+  "file": "/Users/admin/Documents/GitHub/CPPBasics/Tetris/source/Tetris.cpp",
+  "output": "Tetris/CMakeFiles/Tetris.dir/source/Tetris.cpp.o"
 }
 ]
