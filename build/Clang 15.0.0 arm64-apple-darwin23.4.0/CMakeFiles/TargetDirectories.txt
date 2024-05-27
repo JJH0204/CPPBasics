@@ -6,3 +6,6 @@
 /Users/admin/Documents/GitHub/CPPBasics/build/Clang 15.0.0 arm64-apple-darwin23.4.0/OOP/CMakeFiles/OOP.dir
 /Users/admin/Documents/GitHub/CPPBasics/build/Clang 15.0.0 arm64-apple-darwin23.4.0/OOP/CMakeFiles/edit_cache.dir
 /Users/admin/Documents/GitHub/CPPBasics/build/Clang 15.0.0 arm64-apple-darwin23.4.0/OOP/CMakeFiles/rebuild_cache.dir
+/Users/admin/Documents/GitHub/CPPBasics/build/Clang 15.0.0 arm64-apple-darwin23.4.0/Tetris/CMakeFiles/Tetris.dir
+/Users/admin/Documents/GitHub/CPPBasics/build/Clang 15.0.0 arm64-apple-darwin23.4.0/Tetris/CMakeFiles/edit_cache.dir
+/Users/admin/Documents/GitHub/CPPBasics/build/Clang 15.0.0 arm64-apple-darwin23.4.0/Tetris/CMakeFiles/rebuild_cache.dir

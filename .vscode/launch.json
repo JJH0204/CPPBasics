@@ -78,6 +78,45 @@
             "logging": {
                 "engineLogging": true
             }
+        },
+        {
+            "name": "Launch Tetris (windows)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\build\\GCC 8.1.0 x86_64-w64-mingw32\\Tetris\\Tetris.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "preLaunchTask": "CMake Build",
+            "logging": {
+                "moduleLoad": true,
+                "trace": true
+            }
+        },
+        {
+            "name": "Launch Tetris (macOS)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/Clang 15.0.0 arm64-apple-darwin23.4.0/Tetris/Tetris",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "lldb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for lldb",
+                    "text": "settings set target.pretty-printing on",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake Build",
+            "logging": {
+                "engineLogging": true
+            }
         }
     ]
 }
