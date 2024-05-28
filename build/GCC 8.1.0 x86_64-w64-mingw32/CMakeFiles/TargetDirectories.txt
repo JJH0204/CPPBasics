@@ -6,3 +6,6 @@ E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/Basics/CMakeFile
 E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/OOP/CMakeFiles/OOP.dir
 E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/OOP/CMakeFiles/edit_cache.dir
 E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/OOP/CMakeFiles/rebuild_cache.dir
+E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/Tetris/CMakeFiles/Tetris.dir
+E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/Tetris/CMakeFiles/edit_cache.dir
+E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/Tetris/CMakeFiles/rebuild_cache.dir

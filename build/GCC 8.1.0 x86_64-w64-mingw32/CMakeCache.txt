@@ -272,6 +272,15 @@ OOP_IS_TOP_LEVEL:STATIC=OFF
 OOP_SOURCE_DIR:STATIC=E:/Document/GitHub/CPPBasics/OOP
 
 //Value Computed by CMake
+Tetris_BINARY_DIR:STATIC=E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/Tetris
+
+//Value Computed by CMake
+Tetris_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+Tetris_SOURCE_DIR:STATIC=E:/Document/GitHub/CPPBasics/Tetris
+
+//Value Computed by CMake
 project_Basics_BINARY_DIR:STATIC=E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32/Basics
 
 //Value Computed by CMake
@@ -385,7 +394,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
