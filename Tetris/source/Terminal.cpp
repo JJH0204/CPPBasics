@@ -1,4 +1,5 @@
 #include "Terminal.h"
+#include <conio.h>
 
 void Terminal::Clear(void)
 {
@@ -21,16 +22,31 @@ void Terminal::Print(const string &String, int size)
         cout << String[i];
 }
 
-void Terminal::ScanEnter()
+KeyCode Terminal::ScanKey()
 {
-    std::string Input;
-    do
+    if (_kbhit())
     {
-        std::getline(std::cin, Input);
-        if (Input.)
+        int ch = _getch();
+        switch (ch)
         {
-            /* code */
+        case 27:
+            return ESC;
+            break;
+        case 13:
+            return ENTER;
+            break;
+        case 72:
+            return UP;
+            break;
+        case 80:
+            return DOWN;
+            break;
+        case 75:
+            return LEFT;
+            break;
+        case 77:
+            return RIGHT;
+            break;
         }
-        
-    } while (!Input.empty());
+    }
 }

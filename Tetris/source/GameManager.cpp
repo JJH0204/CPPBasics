@@ -14,7 +14,9 @@ void GameManager::WorkOut(void)
             this->Opening();
 
             /* 사용자가 Enter 키를 누를 때까지 대기 */
-            Terminal().ScanEnter();
+            do
+            {
+            } while (Terminal().ScanKey() != ENTER);
 
             /* 사용자가 엔터를 눌렀다. 게임을 준비하자 */
             this->setState(READY);
@@ -40,8 +42,18 @@ void GameManager::WorkOut(void)
 
         case END:
             this->Ending();
-            Terminal().ScanEnter();
-            this->setState(READY);
+            while (1)
+            {
+                KeyCode scankey = Terminal().ScanKey();
+                if (scankey == ENTER)
+                {
+                    this->setState(READY);
+                    break;
+                }
+                else if (scankey == ESC)
+                    return;
+                    
+            }
             break;
         }
     }
