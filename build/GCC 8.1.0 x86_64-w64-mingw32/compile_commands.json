@@ -37,30 +37,6 @@
 },
 {
   "directory": "E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32",
-  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE -IE:/Document/GitHub/CPPBasics/Tetris/Tetris -IE:/Document/GitHub/CPPBasics/Tetris/PRIVATE -IE:/Document/GitHub/CPPBasics/Tetris/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o Tetris\\CMakeFiles\\Tetris.dir\\source\\Block.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\Block.cpp",
-  "file": "E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\Block.cpp",
-  "output": "Tetris\\CMakeFiles\\Tetris.dir\\source\\Block.cpp.obj"
-},
-{
-  "directory": "E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32",
-  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE -IE:/Document/GitHub/CPPBasics/Tetris/Tetris -IE:/Document/GitHub/CPPBasics/Tetris/PRIVATE -IE:/Document/GitHub/CPPBasics/Tetris/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o Tetris\\CMakeFiles\\Tetris.dir\\source\\Board.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\Board.cpp",
-  "file": "E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\Board.cpp",
-  "output": "Tetris\\CMakeFiles\\Tetris.dir\\source\\Board.cpp.obj"
-},
-{
-  "directory": "E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32",
-  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE -IE:/Document/GitHub/CPPBasics/Tetris/Tetris -IE:/Document/GitHub/CPPBasics/Tetris/PRIVATE -IE:/Document/GitHub/CPPBasics/Tetris/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o Tetris\\CMakeFiles\\Tetris.dir\\source\\GameManager.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\GameManager.cpp",
-  "file": "E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\GameManager.cpp",
-  "output": "Tetris\\CMakeFiles\\Tetris.dir\\source\\GameManager.cpp.obj"
-},
-{
-  "directory": "E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32",
-  "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE -IE:/Document/GitHub/CPPBasics/Tetris/Tetris -IE:/Document/GitHub/CPPBasics/Tetris/PRIVATE -IE:/Document/GitHub/CPPBasics/Tetris/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o Tetris\\CMakeFiles\\Tetris.dir\\source\\Terminal.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\Terminal.cpp",
-  "file": "E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\Terminal.cpp",
-  "output": "Tetris\\CMakeFiles\\Tetris.dir\\source\\Terminal.cpp.obj"
-},
-{
-  "directory": "E:/Document/GitHub/CPPBasics/build/GCC 8.1.0 x86_64-w64-mingw32",
   "command": "C:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE -IE:/Document/GitHub/CPPBasics/Tetris/Tetris -IE:/Document/GitHub/CPPBasics/Tetris/PRIVATE -IE:/Document/GitHub/CPPBasics/Tetris/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o Tetris\\CMakeFiles\\Tetris.dir\\source\\Tetris.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\Tetris.cpp",
   "file": "E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\Tetris.cpp",
   "output": "Tetris\\CMakeFiles\\Tetris.dir\\source\\Tetris.cpp.obj"

@@ -10,12 +10,9 @@ namespace Tetris
     public:
         GameManager() {}
         ~GameManager() {}
-        void Print(Block block, Ground ground);
+        void Marge(Block block, Ground &ground);
     };
-    void GameManager::Print(Block block, Ground ground)
-    {
-    }
-    
+
     /* 2차원 좌표계 계산 객체 */
     template <typename T>
     class Vector2
@@ -69,5 +66,6 @@ namespace Tetris
             delete[] _ppGlobal[i];
         delete[] _ppGlobal;
     }
-
 }
+
+#endif
