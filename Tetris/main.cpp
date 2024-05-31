@@ -3,6 +3,8 @@
 
 int main(int argc, char *argv[])
 {
-    
+    Tetris::GameManager GameManager;
+
+    GameManager.update();
     return 0;
 }
