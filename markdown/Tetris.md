@@ -4,7 +4,5 @@
 - 작업하면서 알게되는 개념은 따로 문서화할 에정이다.
   - [Cpp 기본 문법](/markdown/Basics.md)
   - [OOP 문법](/markdown/OOP.md)
+  - [테트리스 개발 문서](/Tetris/diagram/테트리스.html)
 
-## 1. 블럭 옮기기
-- 터미널에 블럭을 출력하고 이동시키는 것을 구현한다.
-- 
