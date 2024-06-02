@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     // std::cout << Block._x << Block._y << std::endl;
     // std::cout << Board._nCol << Board._nRow << std::endl;
 
-    milliseconds msPerFrame(120); /* 대락 60 FPS에 해당하는 시간 */
+    milliseconds msPerFrame(200); /* 게임 속도 제어 */
 
     while (true)
     {
@@ -34,7 +34,9 @@ int main(int argc, char *argv[])
         auto frameStart = high_resolution_clock::now();
 
         clearScreen();
-        Block._y += 1;
+        // Block.setPosY(Block.getPosY() + 1);
+        // Block.setPos(Vector2(Block.getPosX(), Block.getPosY()) + Vector2(0, 1));
+        Block.gravity(1);
         Board.print(Block);
 
         /* 코드 실행 후 시간 기록 */

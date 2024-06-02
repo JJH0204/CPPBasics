@@ -21,7 +21,7 @@ public:
     }
     ~Board();
 
-    void print(Block block);
+    void print(Block &block) const;
 };
 
 Board::~Board()
@@ -34,7 +34,7 @@ Board::~Board()
     delete[] _ppBoolSpace;
 }
 
-void Board::print(Block block)
+void Board::print(Block &block) const
 {
     std::cout << "############" << std::endl;
     for (int i = 0; i < _nCol; i++)
@@ -42,7 +42,7 @@ void Board::print(Block block)
         std::cout << "#";
         for (int j = 0; j < _nRow; j++)
         {
-            if (i == block._y && j == block._x)
+            if (i == block.getPosY() && j == block.getPosX())
                 std::cout << "@";
             else
                 std::cout << " ";
