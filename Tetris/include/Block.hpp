@@ -38,7 +38,8 @@ public:
 class Block : public Vector2<int>
 {
 private:
-    
+    bool **_ppShape;
+
 public:
     Block() {}
     Block(int x, int y)
@@ -52,6 +53,41 @@ public:
         this->setPosY(val.getPosY());
     }
     ~Block() {}
+
+    void addShape(const bool **shape);
 };
+
+void Block::addShape(const bool **shape)
+{
+    _ppShape = new bool *[4];
+    for (int i = 0; i < 4; i++)
+        *(_ppShape + i) = new bool[4];
+
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++)
+            _ppShape[i][j] = shape[i][j];
+}
+
+class BlockManager
+{
+private:
+    Block *_pBlockList;
+
+public:
+    BlockManager();
+    ~BlockManager();
+};
+
+BlockManager::BlockManager()
+{
+    _pBlockList = new Block[28];
+
+    _pBlockList[0].addShape({{1,1,0,0},{0,1,1,0},{0,0,0,0},{}})
+}
+
+BlockManager::~BlockManager()
+{
+    delete[] _pBlockList;
+}
 
 #endif

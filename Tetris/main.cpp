@@ -4,8 +4,8 @@
 #include <chrono>
 #include <thread>
 
-#include "Block.h"
-#include "Board.h"
+#include "Block.hpp"
+#include "Board.hpp"
 
 void clearScreen()
 {
