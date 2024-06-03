@@ -82,7 +82,8 @@ BlockManager::BlockManager()
 {
     _pBlockList = new Block[28];
 
-    _pBlockList[0].addShape({{1,1,0,0},{0,1,1,0},{0,0,0,0},{}})
+    // _pBlockList[0].addShape({{1,1,0,0},{0,1,1,0},{0,0,0,0},{}})
+    /* 블록 모양 정보를 효율적으로 관리할 수 있는 방법을 연구해 보자 */
 }
 
 BlockManager::~BlockManager()
