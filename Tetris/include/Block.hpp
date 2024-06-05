@@ -14,8 +14,8 @@ public:
     Vector2(const Vector2 &val) : _x(val._x), _y(val._y) {}
     ~Vector2() {}
 
-    T getPosX() { return _x; }
-    T getPosY() { return _y; }
+    T getPosX() const { return _x; }
+    T getPosY() const { return _y; }
 
     void setPosX(const T x) { _x = x; }
     void setPosY(const T y) { _y = y; }
@@ -35,60 +35,116 @@ public:
     void gravity(T y) { _y += y; }
 };
 
+enum BlockType
+{
+    I,
+    O,
+    T,
+    S,
+    Z,
+    J,
+    L
+};
+
 class Block : public Vector2<int>
 {
 private:
+    BlockType _type;
+    int _width, _height;
     bool **_ppShape;
 
+    void allocShape(void)
+    {
+        _ppShape = new bool *[this->getHeight()];
+        for (int i = 0; i < this->getHeight(); i++)
+            *(_ppShape + i) = new bool[this->getWidth()];
+    }
+
+    // _ppShape 배열을 다른 Block 객체로부터 복사하는 함수
+    void copyShape(const bool **sourceShape)
+    {
+        for (int i = 0; i < this->getHeight(); i++)
+            for (int j = 0; j < this->getWidth(); j++)
+                _ppShape[i][j] = sourceShape[i][j];
+    }
+
 public:
-    Block() {}
-    Block(int x, int y)
+    Block() : _width(4), _height(4)
+    {
+        this->setPosX(0);
+        this->setPosY(0);
+        this->allocShape();
+    }
+    Block(int x, int y) : _width(4), _height(4)
     {
         this->setPosX(x);
         this->setPosY(y);
+        this->allocShape();
     }
-    Block(Vector2 val)
+    Block(Vector2 val) : _width(4), _height(4)
     {
         this->setPosX(val.getPosX());
         this->setPosY(val.getPosY());
+        this->allocShape();
     }
-    ~Block() {}
+    Block(const BlockType type, const int width, const int height, const bool ppShape[4][4]) : _type(type), _width(width), _height(height)
+    {
+        this->setPosX(0);
+        this->setPosY(0);
+        this->allocShape();
+        for (int i = 0; i < height; i++)
+            for (int j = 0; j < width; j++)
+                _ppShape[i][j] = ppShape[i][j];
+    }
+    // 복사 생성자
+    Block(const Block &other) : Vector2<int>(other), _type(other._type), _width(other._width), _height(other._height)
+    {
+        this->allocShape();
+        this->copyShape(const_cast<const bool **>(other._ppShape)); // 상수성 유지
+    }
 
-    void addShape(const bool **shape);
+    ~Block()
+    {
+        for (int i = 0; i < this->getHeight(); i++)
+            delete[] _ppShape[i];
+        delete[] _ppShape;
+    }
+
+    int getWidth() { return _width; }
+    int getHeight() { return _height; }
+    bool **getShape() { return _ppShape; }
+
+    // void addShape(const bool **shape);
 };
 
-void Block::addShape(const bool **shape)
-{
-    _ppShape = new bool *[4];
-    for (int i = 0; i < 4; i++)
-        *(_ppShape + i) = new bool[4];
+// void Block::addShape(const bool **shape)
+// {
+//     for (int i = 0; i < this->getHeight(); i++)
+//         for (int j = 0; j < this->getWidth(); j++)
+//             _ppShape[i][j] = shape[i][j];
+// }
 
-    for (int i = 0; i < 4; i++)
-        for (int j = 0; j < 4; j++)
-            _ppShape[i][j] = shape[i][j];
-}
+// class BlockManager
+// {
+// private:
+//     Block *_pBlockList;
 
-class BlockManager
-{
-private:
-    Block *_pBlockList;
+// public:
+//     BlockManager();
+//     ~BlockManager();
+// };
 
-public:
-    BlockManager();
-    ~BlockManager();
-};
+// BlockManager::BlockManager()
+// {
+//     _pBlockList = new Block[28];
 
-BlockManager::BlockManager()
-{
-    _pBlockList = new Block[28];
+//     // _pBlockList[0].addShape({{1,1,0,0},{0,1,1,0},{0,0,0,0},{}})
+//     /* 블록 모양 정보를 효율적으로 관리할 수 있는 방법을 연구해 보자 */
+// }
 
-    // _pBlockList[0].addShape({{1,1,0,0},{0,1,1,0},{0,0,0,0},{}})
-    /* 블록 모양 정보를 효율적으로 관리할 수 있는 방법을 연구해 보자 */
-}
-
-BlockManager::~BlockManager()
-{
-    delete[] _pBlockList;
-}
+// BlockManager::~BlockManager()
+// {
+//     delete[] _pBlockList;
+// }
 
 #endif

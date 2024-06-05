@@ -20,11 +20,12 @@ using namespace std::chrono;
 
 int main(int argc, char *argv[])
 {
-    Board Board;
-    Block Block;
+    Board _Board;
+    Block _Block;
 
-    // std::cout << Block._x << Block._y << std::endl;
-    // std::cout << Board._nCol << Board._nRow << std::endl;
+    /* 게임 설정 */
+    const bool temp[4][4] = {{1, 1, 1, 1}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+    _Block = Block(I, 4, 4, temp);
 
     milliseconds msPerFrame(200); /* 게임 속도 제어 */
 
@@ -34,10 +35,11 @@ int main(int argc, char *argv[])
         auto frameStart = high_resolution_clock::now();
 
         clearScreen();
-        // Block.setPosY(Block.getPosY() + 1);
-        // Block.setPos(Vector2(Block.getPosX(), Block.getPosY()) + Vector2(0, 1));
-        Block.gravity(1);
-        Board.print(Block);
+
+        /* 게임 구동 */
+
+        _Block.gravity(1);
+        _Board.print(_Block);
 
         /* 코드 실행 후 시간 기록 */
         auto frameEnd = high_resolution_clock::now();

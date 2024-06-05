@@ -40,24 +40,36 @@ public:
     void setRow(int Row) { _nRow = Row; }
     void setCol(int Col) { _nCol = Col; }
 
-    void print(Block &block) const;
-};
-
-void Board::print(Block &block) const
-{
-    std::cout << "############" << std::endl;
-    for (int i = 0; i < _nCol; i++)
+    void merge(Block &block) const
     {
-        std::cout << "#";
-        for (int j = 0; j < _nRow; j++)
+        int x = 0, y = 0;
+        bool **temp = block.getShape();
+        for (int i = block.getPosY(); y <= block.getHeight(); i++)
         {
-            if (i == block.getPosY() && j == block.getPosX())
-                std::cout << "@";
-            else
-                std::cout << " ";
+            for (int j = block.getPosX(); x <= block.getWidth(); j++)
+            {
+                _ppSpace[i][j] = (_ppSpace[i][j] != temp[y][x]);
+                x++;
+            }
+            y++;
         }
-        std::cout << "#" << std::endl;
     }
-    std::cout << "############" << std::endl;
-}
+
+    void print(Block &block) const
+    {
+        this->merge(block);
+        std::cout << "############" << std::endl;
+        for (int i = 0; i < _nCol; i++)
+        {
+            std::cout << "#";
+            for (int j = 0; j < _nRow; j++)
+            {
+                std::cout << ((this->_ppSpace[i][j] == 1) ? "@" : " ");
+            }
+            std::cout << "#" << std::endl;
+        }
+        std::cout << "############" << std::endl;
+        this->merge(block);
+    }
+};
 #endif

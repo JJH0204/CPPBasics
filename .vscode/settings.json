@@ -81,6 +81,13 @@
         "optional": "cpp",
         "random": "cpp",
         "utility": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "forward_list": "cpp",
+        "any": "cpp",
+        "codecvt": "cpp",
+        "map": "cpp",
+        "iomanip": "cpp",
+        "thread": "cpp",
+        "valarray": "cpp"
     }
 }
