@@ -24,31 +24,32 @@ int main(int argc, char *argv[])
     Block _Block;
 
     /* 게임 설정 */
-    const bool temp[4][4] = {{1, 1, 1, 1}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
-    _Block = Block(I, 4, 4, temp);
+    const int temp[][4] = {{1, 1, 1, 1}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+    _Block = Block(I, temp);
+    _Block.print();
+    // milliseconds msPerFrame(200); /* 게임 속도 제어 */
 
-    milliseconds msPerFrame(200); /* 게임 속도 제어 */
+    // while (true)
+    // {
+    //     /* 현재 시간 기록 */
+    //     auto frameStart = high_resolution_clock::now();
 
-    while (true)
-    {
-        /* 현재 시간 기록 */
-        auto frameStart = high_resolution_clock::now();
+    //     clearScreen();
 
-        clearScreen();
+    //     /* 게임 구동 */
+        
 
-        /* 게임 구동 */
+    //     // _Block.gravity(1);
+    //     // _Board.print(_Block);
 
-        _Block.gravity(1);
-        _Board.print(_Block);
+    //     /* 코드 실행 후 시간 기록 */
+    //     auto frameEnd = high_resolution_clock::now();
+    //     /* 경과 시간 계산 */
+    //     auto elapsedTime = frameEnd - frameStart;
 
-        /* 코드 실행 후 시간 기록 */
-        auto frameEnd = high_resolution_clock::now();
-        /* 경과 시간 계산 */
-        auto elapsedTime = frameEnd - frameStart;
-
-        // 프레임 시간을 유지하기 위해 필요하다면 대기
-        if (elapsedTime < msPerFrame)
-            std::this_thread::sleep_for(msPerFrame - elapsedTime);
-    }
+    //     // 프레임 시간을 유지하기 위해 필요하다면 대기
+    //     if (elapsedTime < msPerFrame)
+    //         std::this_thread::sleep_for(msPerFrame - elapsedTime);
+    // }
     return 0;
 }
