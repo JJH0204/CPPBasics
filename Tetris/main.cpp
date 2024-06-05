@@ -4,8 +4,7 @@
 #include <chrono>
 #include <thread>
 
-#include "Block.hpp"
-#include "Board.hpp"
+#include "GameManager.hpp"
 
 void clearScreen()
 {
@@ -20,36 +19,28 @@ using namespace std::chrono;
 
 int main(int argc, char *argv[])
 {
-    Board _Board;
-    Block _Block;
+    /* 게임 관리자 객체 생성 */
+    GameManager _GameManger;
+    /* 게임 데이터 초기화 */
+    _GameManger.start();
+    /* 게임 속도 제어 */
+    milliseconds msPerFrame(_GameManger.getGameTime()); 
+    while (true)
+    {
+        /* 현재 시간 기록 */
+        auto frameStart = high_resolution_clock::now();
+        /* 스크린 초기화 */
+        clearScreen();
+        /* 게임 진행 */
+        _GameManger.update();
+        /* 코드 실행 후 시간 기록 */
+        auto frameEnd = high_resolution_clock::now();
+        /* 경과 시간 계산 */
+        auto elapsedTime = frameEnd - frameStart;
 
-    /* 게임 설정 */
-    const int temp[][4] = {{1, 1, 1, 1}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
-    _Block = Block(I, temp);
-    _Block.print();
-    // milliseconds msPerFrame(200); /* 게임 속도 제어 */
-
-    // while (true)
-    // {
-    //     /* 현재 시간 기록 */
-    //     auto frameStart = high_resolution_clock::now();
-
-    //     clearScreen();
-
-    //     /* 게임 구동 */
-        
-
-    //     // _Block.gravity(1);
-    //     // _Board.print(_Block);
-
-    //     /* 코드 실행 후 시간 기록 */
-    //     auto frameEnd = high_resolution_clock::now();
-    //     /* 경과 시간 계산 */
-    //     auto elapsedTime = frameEnd - frameStart;
-
-    //     // 프레임 시간을 유지하기 위해 필요하다면 대기
-    //     if (elapsedTime < msPerFrame)
-    //         std::this_thread::sleep_for(msPerFrame - elapsedTime);
-    // }
+        // 프레임 시간을 유지하기 위해 필요하다면 대기
+        if (elapsedTime < msPerFrame)
+            std::this_thread::sleep_for(msPerFrame - elapsedTime);
+    }
     return 0;
 }
