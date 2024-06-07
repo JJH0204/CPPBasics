@@ -1,6 +1,6 @@
 #include "GameManager.hpp"
 
-GameManager::GameManager(void)
+GameManager::GameManager(void) : _GameTime(200)
 {
     /* code */
 }
@@ -17,6 +17,6 @@ void GameManager::update(void)
     /* 게임 구동 */
 
     // _Block.gravity(1);
-    _Block.print();
-    // _Board.print(_Block);
+    // _Block.print();
+    _Board.print();
 }

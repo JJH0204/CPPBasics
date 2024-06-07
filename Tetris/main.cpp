@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     /* 게임 데이터 초기화 */
     _GameManger.start();
     /* 게임 속도 제어 */
-    milliseconds msPerFrame(_GameManger.getGameTime()); 
+    milliseconds msPerFrame(120); 
     while (true)
     {
         /* 현재 시간 기록 */
