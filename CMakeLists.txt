@@ -17,16 +17,22 @@ add_compile_options(
 # 디버그 모드 설정
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG -g")
 
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug)
+endif()
+
+
 if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    message(STATUS "Configuring for macOS")
     # macOS-specific settings
+    message(STATUS "Configuring for macOS")
+    
     # 서브 프로젝트 추가: project_Basics
     add_subdirectory(Basics)
     add_subdirectory(OOP)
     add_subdirectory(Tetris)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    message(STATUS "Configuring for Windows")
     # Windows-specific settings
+    message(STATUS "Configuring for Windows")
     # 서브 프로젝트 추가: project_Basics
     add_subdirectory(Basics)
     add_subdirectory(OOP)
