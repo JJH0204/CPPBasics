@@ -1,16 +1,8 @@
 [
     {
         "name": "Win32",
-        "description": "Windows 32-bit build",
         "generator": "Ninja",
-        "toolchainFile": "",
-        "buildType": "Debug",
-        "cmakeSettings": {
-            "CMAKE_BUILD_TYPE": "Debug"
-        },
-        "environmentVariables": {
-            "buildKit": "build_win"
-        }
+        "toolchainFile": "C:\\Program Files\\mingw64\\bin\\gcc.exe"
     },
     {
         "name": "Mac",
