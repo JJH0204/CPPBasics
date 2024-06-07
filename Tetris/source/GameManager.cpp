@@ -1,9 +1,6 @@
 #include "GameManager.hpp"
 
-GameManager::GameManager(void) : _GameTime(200)
-{
-    /* code */
-}
+GameManager::GameManager(void) : _GameTime(200) {}
 
 void GameManager::start(void)
 {

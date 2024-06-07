@@ -1,6 +1,6 @@
 #include "Board.hpp"
 
-Board::Board() : _nRow(10), _nCol(20), _space(_nRow, std::vector<int>(_nCol, 0))
+Board::Board() : _nRow(10), _nCol(20), _space(_nCol, std::vector<int>(_nRow, 0))
 {
     // /* 2차원 배열 공간 동적으로 생성(할당) */
     // _space.resize(_nCol, std::vector<int>(_nRow)); /* 이차원 배열 리사이징 */
@@ -43,7 +43,7 @@ void Board::print() const
         std::cout << "#";
 
         for (int elem : cols)
-            std::cout << ((elem == 1) ? "@" : "%");
+            std::cout << ((elem == 1) ? "@" : " ");
 
         std::cout << "#" << std::endl;
     }
