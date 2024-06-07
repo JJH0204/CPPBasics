@@ -6,15 +6,7 @@
     },
     {
         "name": "Mac",
-        "description": "MacOS build",
         "generator": "Ninja",
-        "toolchainFile": "",
-        "buildType": "Debug",
-        "cmakeSettings": {
-            "CMAKE_BUILD_TYPE": "Debug"
-        },
-        "environmentVariables": {
-            "buildKit": "build_mac"
-        }
+        "toolchainFile": "/usr/bin/clang"
     }
 ]
