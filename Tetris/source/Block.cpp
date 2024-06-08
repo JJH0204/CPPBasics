@@ -6,20 +6,24 @@ Block::Block() : _width(4), _height(4), _shape(_height, std::vector<int>(_width,
     this->setPosX(0);
     this->setPosY(0);
 }
-Block::Block(int x, int y) : _width(4), _height(4), _shape(_height, std::vector<int>(_width, 0))
+
+Block::Block(BlockType type, Vector2D vector2, int **shape) : _type(type), _width(4), _height(4)
 {
-    this->setPosX(x);
-    this->setPosY(y);
+    this->setPosX(vector2.getPosX());
+    this->setPosY(vector2.getPosY());
+    this->setShape(shape);
 }
-Block::Block(Vector2D val) : _width(4), _height(4), _shape(_height, std::vector<int>(_width, 0))
+
+Block::Block(Block &other) : _type(other.getType()), _width(other.getWidth()), _height(other.getHeight())
 {
-    this->setPosX(val.getPosX());
-    this->setPosY(val.getPosY());
+    this->setPosX(other.getPosX());
+    this->setPosY(other.getPosY());
+    this->_shape = other.getShape();
 }
 
 Block::~Block() {}
 
-void Block::copyShape(const int **sourceShape)
+void Block::setShape(int **sourceShape)
 {
     for (int i = 0; i < this->getHeight(); i++)
         for (int j = 0; j < this->getWidth(); j++)
@@ -28,9 +32,10 @@ void Block::copyShape(const int **sourceShape)
 
 void Block::print() const
 {
-    for (int i = 0; i < this->_height; i++)
-        for (int j = 0; j < this->_width; j++)
-            std::cout << ((_shape[i][j] == 1) ? "@" : " ");
+    std::cout << blockTypeNames[_type] << std::endl;
+    for (const auto &cols : _shape)
+        for (int elem : cols)
+            std::cout << ((elem == 1) ? "@" : " ");
 }
 
 // TODO: 1. 블록 객체를 만들어서 화면에 출력하자

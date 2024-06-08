@@ -48,23 +48,27 @@ enum BlockType
     L
 };
 
+static const char *blockTypeNames[] = {"I", "O", "T", "S", "Z", "J", "L"};
+
 class Block : public Vector2D<int>
 {
 private:
-    BlockType _type;
-    int _width, _height;
-    std::vector<std::vector<int>> _shape;
-
-    void copyShape(const int **sourceShape);
+    int _width, _height;                  /* 블록 가로, 세로 폭 */
+    BlockType _type;                      /* 블록 모양 식별 정보 */
+    std::vector<std::vector<int>> _shape; /* 블록 모양 이차원 데이터 */
 
 public:
     Block();
-    Block(int x, int y);
-    Block(Vector2D val);
+    Block(BlockType type, Vector2D vector2, int **shape);
+    Block(Block &other);
     ~Block();
 
     int getWidth() { return _width; }
     int getHeight() { return _height; }
+    BlockType getType() { return _type; }
+    std::vector<std::vector<int>> getShape() { return _shape; }
+
+    void setShape(int **sourceShape);
 
     void print() const;
 };

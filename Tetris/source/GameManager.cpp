@@ -14,6 +14,18 @@ void GameManager::update(void)
     /* 게임 구동 */
 
     // _Block.gravity(1);
-    // _Block.print();
-    _Board.print();
+    // _Block.setShape(new int *[4]{
+    //     new int[4]{1, 1, 1, 1},
+    //     new int[4]{0, 0, 0, 0},
+    //     new int[4]{0, 0, 0, 0},
+    //     new int[4]{0, 0, 0, 0}});
+    _Block = Block(I, Vector2D(0, 0), new int *[4]{
+        new int[4]{1, 1, 1, 1}, 
+        new int[4]{0, 0, 0, 0}, 
+        new int[4]{0, 0, 0, 0}, 
+        new int[4]{0, 0, 0, 0}});
+    _Block.print();
+    // _Board.print();
 }
+
+// 블록을 복사 생성하는 중에 프로그램이 종료되는지 출력 중에 종료되는지 확인해보자

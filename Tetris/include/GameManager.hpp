@@ -1,8 +1,9 @@
+#include "Board.hpp"
+#include "Block.hpp"
+
 #ifndef __GAMEMANAGER__
 #define __GAMEMANAGER__
 
-#include "Board.hpp"
-#include "Block.hpp"
 
 class GameManager
 {
