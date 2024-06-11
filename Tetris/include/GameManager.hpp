@@ -9,7 +9,7 @@ class GameManager
 {
 private:
     Board _Board;
-    Block _Block;
+    Block _Block[7];
     int _GameTime;
 
 public:

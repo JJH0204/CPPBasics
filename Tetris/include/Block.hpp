@@ -59,8 +59,9 @@ private:
 
 public:
     Block();
-    Block(BlockType type, Vector2D vector2, int **shape);
-    Block(Block &other);
+    // Block(int w, int h);
+    // Block(BlockType type, Vector2D vector2, int **shape);
+    // Block(Block &other);
     ~Block();
 
     int getWidth() { return _width; }
@@ -68,8 +69,7 @@ public:
     BlockType getType() { return _type; }
     std::vector<std::vector<int>> getShape() { return _shape; }
 
-    void setShape(int **sourceShape);
-
+    void setShape(BlockType type, const std::vector<std::vector<int>> &sourceShape);
     void print() const;
 };
 
