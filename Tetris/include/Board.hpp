@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-// #include "Block.hpp"
+#include "Block.hpp"
 
 class Board
 {
@@ -23,5 +23,7 @@ public:
 
     // void merge(Block &block) const;
     void print() const;
+    void display(Block block);
+    void refresh(Block block);
 };
 #endif

@@ -25,5 +25,3 @@ void Block::print() const
     }
     std::cout << std::endl;
 }
-
-// TODO: 2. 보드에 올려서 보드와 함께 출력하자
