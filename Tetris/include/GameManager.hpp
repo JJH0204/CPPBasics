@@ -20,6 +20,8 @@ public:
 
     void start();
     void update();
+
+    bool isCollision(Vector2D<int> dir, Block obj, Board &spc);
 };
 
 #endif
