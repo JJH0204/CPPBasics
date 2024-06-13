@@ -17,6 +17,7 @@ public:
 
     int getRow() { return _nRow; }
     int getCol() { return _nCol; }
+    std::vector<std::vector<int>> getSpace() { return _space; }
 
     void setRow(int Row) { _nRow = Row; }
     void setCol(int Col) { _nCol = Col; }
