@@ -58,7 +58,10 @@ bool GameManager::update(void)
     _Board.print();
     _Board.refresh(_PlayableBlock);
 
-
+    // 키를 입력 받고
+    // <-, -> 로 블럭 이동
+    // space 로 블럭 회전
+    
     // 블럭이 바닥 또는 다른 블럭에 닿지 않았다.
     if (isCollision(Vector2D(0, 1), _PlayableBlock, _Board) == false)
     {
