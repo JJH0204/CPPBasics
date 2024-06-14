@@ -28,6 +28,8 @@ public:
     bool update();
 
     bool isCollision(Vector2D<int> dir, Block obj, Board &spc);
+
+    void keyInput();
 };
 
 #endif

@@ -111,3 +111,8 @@ bool GameManager::isCollision(Vector2D<int> dir, Block obj, Board &spc)
     }
     return false;
 }
+
+void GameManager::keyInput()
+{
+    // int ch = getch()
+}
