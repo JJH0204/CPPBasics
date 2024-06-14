@@ -71,6 +71,7 @@ public:
 
     void setShape(BlockType type, const std::vector<std::vector<int>> &sourceShape);
     void print() const;
+    std::vector<std::vector<int>> rotate();
 };
 
 #endif

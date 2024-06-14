@@ -2,6 +2,16 @@
 
 GameManager::GameManager(void) : _GameTime(200) {}
 
+int random_0_6()
+{
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+
+    std::mt19937 gen(seed);
+    std::uniform_int_distribution<> dis(0, 6);
+
+    return dis(gen);
+}
+
 void GameManager::start(void)
 {
     _BlockList[I].setShape(I, std::vector<std::vector<int>>({{1, 1, 1, 1},
@@ -32,24 +42,36 @@ void GameManager::start(void)
                                                              {0, 1, 0, 0},
                                                              {0, 0, 0, 0},
                                                              {0, 0, 0, 0}}));
+
+    // 대기열 초기화
+    for (int i = 0; i < 2; i++)
+        _BlockQueue[i] = _BlockList[random_0_6()];
 }
 
-void GameManager::update(void)
+bool GameManager::update(void)
 {
     /* 게임 구동 */
-    int nShape = 1;
-    _Board.display(_BlockList[nShape]);
+    if (isCollision(Vector2D(0, 0), _PlayableBlock, _Board) == false)
+        _Board.display(_PlayableBlock);
+    else
+        return true;
     _Board.print();
-    _Board.refresh(_BlockList[nShape]);
-    if (isCollision(Vector2D(0, 1), _BlockList[nShape], _Board) == false)
+    _Board.refresh(_PlayableBlock);
+
+
+    // 블럭이 바닥 또는 다른 블럭에 닿지 않았다.
+    if (isCollision(Vector2D(0, 1), _PlayableBlock, _Board) == false)
     {
-        _BlockList[nShape].gravity(1);
+        _PlayableBlock.gravity(1);
     }
+    // 블럭이 바닥 또는 다른 블럭에 닿았다
     else
     {
-        _Board.display(_BlockList[nShape]);
-        _BlockList[nShape].setPos(Vector2D<int>(0, 0));
+        _Board.display(_PlayableBlock);
+        _BlockQueue[0] = _BlockQueue[1];
+        _BlockQueue[1] = _BlockList[random_0_6()];
     }
+    return false;
 }
 
 bool GameManager::isCollision(Vector2D<int> dir, Block obj, Board &spc)
@@ -66,7 +88,7 @@ bool GameManager::isCollision(Vector2D<int> dir, Block obj, Board &spc)
             if (obj.getShape()[i][j] == 1)
             {
                 // 블럭이 벽에 충돌되었는지 바닥에 충돌되었는지 다른 블럭과 출돌되었는지 확인하면 됨
-                std::cout << spc.getRow() << spc.getCol() << std::endl;
+                // std::cout << spc.getRow() << spc.getCol() << std::endl;
                 if ((obj.getPosY() + i) >= spc.getCol() || (obj.getPosY() + i) < 0)
                 {
                     // std::cout << "case 1" << std::endl;
@@ -88,7 +110,4 @@ bool GameManager::isCollision(Vector2D<int> dir, Block obj, Board &spc)
         }
     }
     return false;
-    // 2. 블럭이 공간에 배치된 다른 블럭과 중첩되는지 확인해본다.
-    // 3. 블럭이 공간 밖으로 나가는지 확인해본다.
-    /* 모든 검사에 무사히 통과했다면 false, 실패했다면 true */
 }

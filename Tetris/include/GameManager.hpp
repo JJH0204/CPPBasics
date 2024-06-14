@@ -1,3 +1,7 @@
+#include <iostream>
+#include <chrono>
+#include <random>
+
 #include "Board.hpp"
 #include "Block.hpp"
 
@@ -10,6 +14,8 @@ class GameManager
 private:
     Board _Board;
     Block _BlockList[7];
+    Block _BlockQueue[2];
+    Block &_PlayableBlock = _BlockQueue[0];
     int _GameTime;
 
 public:
@@ -19,7 +25,7 @@ public:
     int getGameTime() { return _GameTime; }
 
     void start();
-    void update();
+    bool update();
 
     bool isCollision(Vector2D<int> dir, Block obj, Board &spc);
 };

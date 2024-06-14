@@ -54,3 +54,4 @@ void Board::refresh(Block block)
         }
     }
 }
+

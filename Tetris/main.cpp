@@ -1,7 +1,5 @@
 /* 테트리스 구현 프로젝트 */
-#include <iostream>
 #include <cstdlib>
-#include <chrono>
 #include <thread>
 
 #include "GameManager.hpp"
@@ -42,7 +40,8 @@ int main(int argc, char *argv[])
         /* 스크린 초기화 */
         clearScreen();
         /* 게임 진행 */
-        _GameManger.update();
+        if (_GameManger.update())
+            break;
         /* 루프 속도 제어 */
         systemPause(milliseconds(_GameManger.getGameTime()));
     }

@@ -26,5 +26,7 @@ public:
     void print() const;
     void display(Block block);
     void refresh(Block block);
+
+    bool isFullOfCols();
 };
 #endif
