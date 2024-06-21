@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <random>
+#include <ncurses.h>
 
 #include "Board.hpp"
 #include "Block.hpp"

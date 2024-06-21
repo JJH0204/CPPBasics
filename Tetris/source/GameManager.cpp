@@ -46,22 +46,55 @@ void GameManager::start(void)
     // 대기열 초기화
     for (int i = 0; i < 2; i++)
         _BlockQueue[i] = _BlockList[random_0_6()];
+
+    initscr();            // ncurses 모드 시작
+    cbreak();             // 버퍼링 없이 즉시 입력 받음
+    noecho();             // 입력한 키를 화면에 표시하지 않음
+    keypad(stdscr, TRUE); // 특수 키 활성화
+    nodelay(stdscr, TRUE);// getch()가 블로킹 되지 않도록 설정
 }
 
 bool GameManager::update(void)
 {
     /* 게임 구동 */
     if (isCollision(Vector2D(0, 0), _PlayableBlock, _Board) == false)
+    {
         _Board.display(_PlayableBlock);
+        _Board.print();
+        _Board.refresh(_PlayableBlock);
+    }
     else
+    {
         return true;
-    _Board.print();
-    _Board.refresh(_PlayableBlock);
+    }
 
     // 키를 입력 받고
     // <-, -> 로 블럭 이동
     // space 로 블럭 회전
-    
+    int ch = getch();
+
+    switch (ch)
+    {
+    case KEY_UP:
+        /* code */
+        break;
+    case KEY_DOWN:
+        /* code */
+        break;
+    case KEY_LEFT:
+        /* code */
+        break;
+    case KEY_RIGHT:
+        /* code */
+        break;
+    case ' ': // is Space bar key
+        /* code */
+        break;
+    case 27: // is ESC key
+        /* code */
+        break;
+    }
+
     // 블럭이 바닥 또는 다른 블럭에 닿지 않았다.
     if (isCollision(Vector2D(0, 1), _PlayableBlock, _Board) == false)
     {

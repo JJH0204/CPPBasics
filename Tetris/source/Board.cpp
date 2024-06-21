@@ -9,7 +9,7 @@ Board::~Board() {}
 void Board::print() const
 {
     std::cout << "############" << std::endl;
-    for (const auto &cols : _space)
+    for (auto &cols : _space)
     {
         std::cout << "#";
 

@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     GameManager _GameManger;
     /* 게임 데이터 초기화 */
     _GameManger.start();
-    
+    refresh();
     while (true)
     {
         /* 스크린 초기화 */
