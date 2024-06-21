@@ -25,8 +25,8 @@ public:
     // void merge(Block &block) const;
     void print() const;
     void display(Block block);
-    void refresh(Block block);
+    void _refresh(Block block);
 
-    bool isFullOfCols();
+    // bool isFullOfCols();
 };
 #endif

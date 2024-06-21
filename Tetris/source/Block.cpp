@@ -1,8 +1,11 @@
 #include <iostream>
 #include "Block.hpp"
 
-Block::Block() : _width(4), _height(4), _shape(4, std::vector<int>(4, 0))
+Block::Block() : _width(4), _height(4), _shape(4, std::vector<int>(4, 0)) {}
+
+Block::Block(std::vector<std::vector<int>> shape, Vector2D pos) : _shape(shape)
 {
+    this->setPos(pos);
 }
 
 Block::~Block() {}
@@ -68,6 +71,5 @@ std::vector<std::vector<int>> Block::rotate()
 
     // 3. 기존 모양에 대입
     // 회전 블록 반환
-    std::swap(_width, _height);
     return rotateBlock;
 }

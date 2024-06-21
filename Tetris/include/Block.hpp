@@ -18,6 +18,7 @@ public:
 
     T getPosX() const { return _x; }
     T getPosY() const { return _y; }
+    Vector2D getPos() const { return Vector2D(this->getPosX(), this->getPosY()); }
 
     void setPosX(const T x) { _x = x; }
     void setPosY(const T y) { _y = y; }
@@ -35,6 +36,7 @@ public:
     Vector2D operator*(T nScalar) const { return Vector2D(_x - nScalar, _y - nScalar); }
 
     void gravity(T y) { _y += y; }
+    void move(Vector2D<int> dir) { this->setPos(this->getPos() + dir); }
 };
 
 enum BlockType
@@ -59,9 +61,7 @@ private:
 
 public:
     Block();
-    // Block(int w, int h);
-    // Block(BlockType type, Vector2D vector2, int **shape);
-    // Block(Block &other);
+    Block(std::vector<std::vector<int>> shape, Vector2D pos);
     ~Block();
 
     int getWidth() { return _width; }
@@ -72,7 +72,6 @@ public:
     void setShape(BlockType type, const std::vector<std::vector<int>> &sourceShape);
     void print() const;
     std::vector<std::vector<int>> rotate();
-    
 };
 
 #endif

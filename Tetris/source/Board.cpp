@@ -1,4 +1,5 @@
 #include "Board.hpp"
+#include <ncurses.h>
 // #include "Block.hpp"
 
 Board::Board() : _nRow(10), _nCol(20), _space(_nCol, std::vector<int>(_nRow, 0)) {}
@@ -8,17 +9,24 @@ Board::~Board() {}
 
 void Board::print() const
 {
-    std::cout << "############" << std::endl;
-    for (auto &cols : _space)
+    clear();                        // ncurses 화면 청소
+    mvprintw(0, 0, "############"); // 상단 테두리 출력
+
+    int row = 1; // 출력 시작 행을 1로 설정
+    for (const auto &cols : _space)
     {
-        std::cout << "#";
+        move(row, 0); // 커서 이동
+        addch('#');   // 왼쪽 테두리 출력
 
         for (int elem : cols)
-            std::cout << ((elem == 1) ? "@" : " ");
+            addch((elem == 1) ? '@' : ' '); // 각 좌표의 셀 출력
 
-        std::cout << "#" << std::endl;
+        addch('#'); // 오른쪽 테두리 출력
+        row++;      // 다음 행 이동
     }
-    std::cout << "############" << std::endl;
+    mvprintw(row, 0, "############"); // 하단 테두리 출력
+
+    refresh(); // 모든 변경사항을 화면에 반영
 }
 
 void Board::display(Block block)
@@ -38,7 +46,7 @@ void Board::display(Block block)
     }
 }
 
-void Board::refresh(Block block)
+void Board::_refresh(Block block)
 {
     int x = block.getPosX();
     int y = block.getPosY();
@@ -54,4 +62,3 @@ void Board::refresh(Block block)
         }
     }
 }
-

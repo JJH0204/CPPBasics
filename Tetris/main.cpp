@@ -45,6 +45,7 @@ int main(int argc, char *argv[])
         /* 루프 속도 제어 */
         systemPause(milliseconds(_GameManger.getGameTime()));
     }
+    endwin();   // 터미널 설정을 원래대로 복구
     return 0;
 }
 

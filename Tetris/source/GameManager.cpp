@@ -47,11 +47,11 @@ void GameManager::start(void)
     for (int i = 0; i < 2; i++)
         _BlockQueue[i] = _BlockList[random_0_6()];
 
-    initscr();            // ncurses 모드 시작
-    cbreak();             // 버퍼링 없이 즉시 입력 받음
-    noecho();             // 입력한 키를 화면에 표시하지 않음
-    keypad(stdscr, TRUE); // 특수 키 활성화
-    nodelay(stdscr, TRUE);// getch()가 블로킹 되지 않도록 설정
+    initscr();             // ncurses 모드 시작
+    cbreak();              // 버퍼링 없이 즉시 입력 받음
+    noecho();              // 입력한 키를 화면에 표시하지 않음
+    keypad(stdscr, TRUE);  // 특수 키 활성화
+    nodelay(stdscr, TRUE); // getch()가 블로킹 되지 않도록 설정
 }
 
 bool GameManager::update(void)
@@ -61,7 +61,7 @@ bool GameManager::update(void)
     {
         _Board.display(_PlayableBlock);
         _Board.print();
-        _Board.refresh(_PlayableBlock);
+        _Board._refresh(_PlayableBlock);
     }
     else
     {
@@ -79,16 +79,40 @@ bool GameManager::update(void)
         /* code */
         break;
     case KEY_DOWN:
-        /* code */
+        if (isCollision(Vector2D(0, 1), _PlayableBlock, _Board) == false)
+        {
+            _PlayableBlock.gravity(1);
+            _Board.display(_PlayableBlock);
+            _Board.print();
+            _Board._refresh(_PlayableBlock);
+        }
         break;
     case KEY_LEFT:
-        /* code */
+        if (isCollision(Vector2D(-1, 0), _PlayableBlock, _Board) == false)
+        {
+            _PlayableBlock.move(Vector2D(-1, 0));
+            _Board.display(_PlayableBlock);
+            _Board.print();
+            _Board._refresh(_PlayableBlock);
+        }
         break;
     case KEY_RIGHT:
-        /* code */
+        if (isCollision(Vector2D(1, 0), _PlayableBlock, _Board) == false)
+        {
+            _PlayableBlock.move(Vector2D(1, 0));
+            _Board.display(_PlayableBlock);
+            _Board.print();
+            _Board._refresh(_PlayableBlock);
+        }
         break;
     case ' ': // is Space bar key
-        /* code */
+        if (isCollision(Vector2D(0, 0), Block(_PlayableBlock.rotate(), _PlayableBlock.getPos()), _Board) == false)
+        {
+            _PlayableBlock.setShape(_PlayableBlock.getType(), _PlayableBlock.rotate());
+            _Board.display(_PlayableBlock);
+            _Board.print();
+            _Board._refresh(_PlayableBlock);
+        }
         break;
     case 27: // is ESC key
         /* code */
@@ -146,9 +170,4 @@ bool GameManager::isCollision(Vector2D<int> dir, Block obj, Board &spc)
         }
     }
     return false;
-}
-
-void GameManager::keyInput()
-{
-    // int ch = getch()
 }
