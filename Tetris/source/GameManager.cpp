@@ -171,3 +171,6 @@ bool GameManager::isCollision(Vector2D<int> dir, Block obj, Board &spc)
     }
     return false;
 }
+
+// 벽면에 붙어서 블럭을 회전시키면 에러 발생
+// 테트리스 실행 파일로 게임을 실행했을 때 스페이스 바 사용 불가능
