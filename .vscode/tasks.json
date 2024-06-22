@@ -55,5 +55,28 @@
             "dependsOn": "CMake Configure",
             "detail": "Build the project with CMake"
         }
+        ,
+        {
+            "label": "build PDCurses application",
+            "type": "shell",
+            "command": "cl",
+            "args": [
+                "/EHsc",
+                "/Zi",
+                "/Fe:",
+                "${workspaceFolder}\\main.exe",
+                "${workspaceFolder}\\main.cpp",
+                "/I",
+                "C:\\path_to\\PDCurses",
+                "/link",
+                "pdcurses.lib"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$msCompile"],
+            "detail": "Compiler: cl"
+        }
     ]
 }
