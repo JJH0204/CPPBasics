@@ -11,7 +11,7 @@ private:
     T _y;
 
 public:
-    Vector2D() : _x(0), _y(0) {}
+    Vector2D() : _x(4), _y(0) {}
     Vector2D(T x, T y) : _x(x), _y(y) {}
     Vector2D(const Vector2D &val) : _x(val._x), _y(val._y) {}
     ~Vector2D() {}

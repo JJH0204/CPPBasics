@@ -12,40 +12,96 @@ int random_0_6()
     return dis(gen);
 }
 
+void flushInputBuffer()
+{
+    int ch;
+    while ((ch = getch()) != ERR)
+    {
+        // 모든 대기중인 입력을 읽고 무시합니다.
+    }
+}
+
+void GameManager::processKeyInput(int key, Block &playableBlock, Board &board)
+{
+    // <-, -> 로 블럭 이동
+    // space 로 블럭 회전
+    Vector2D movement = Vector2D(0, 0);
+    bool shouldUpdate = false;
+
+    switch (key)
+    {
+    case KEY_UP:
+        // 특정 키에 대한 처리 로직
+        break;
+    case KEY_DOWN:
+        movement = Vector2D(0, 1);
+        break;
+    case KEY_LEFT:
+        movement = Vector2D(-1, 0);
+        break;
+    case KEY_RIGHT:
+        movement = Vector2D(1, 0);
+        break;
+    case ' ': // Space bar
+        if (!isCollision(Vector2D(0, 0), Block(playableBlock.rotate(), playableBlock.getPos()), board))
+        {
+            playableBlock.setShape(playableBlock.getType(), playableBlock.rotate());
+            shouldUpdate = true;
+        }
+        break;
+    case 27: // ESC key
+        // Escape key logic
+        break;
+    }
+
+    if (movement.getPosX() != 0 || movement.getPosY() != 0)
+    {
+        if (!isCollision(movement, playableBlock, board))
+        {
+            playableBlock.move(movement);
+            shouldUpdate = true;
+        }
+    }
+
+    if (shouldUpdate)
+    {
+        board.display(playableBlock);
+        board.print();
+        board._refresh(playableBlock);
+    }
+
+    flushInputBuffer(); // 모든 입력 후에 한 번만 버퍼를 플러시
+}
+
+bool GameManager::isGameOver()
+{
+    if (isCollision(Vector2D(0, 0), _PlayableBlock, _Board) == false)
+    {
+        _Board.display(_PlayableBlock);
+        _Board.print();
+        _Board._refresh(_PlayableBlock);
+        return false;
+    }
+    return true;
+}
+
 void GameManager::start(void)
 {
-    _BlockList[I].setShape(I, std::vector<std::vector<int>>({{1, 1, 1, 1},
-                                                             {0, 0, 0, 0},
-                                                             {0, 0, 0, 0},
-                                                             {0, 0, 0, 0}}));
-    _BlockList[Z].setShape(Z, std::vector<std::vector<int>>({{1, 1, 0, 0},
-                                                             {0, 1, 1, 0},
-                                                             {0, 0, 0, 0},
-                                                             {0, 0, 0, 0}}));
-    _BlockList[O].setShape(O, std::vector<std::vector<int>>({{1, 1, 0, 0},
-                                                             {1, 1, 0, 0},
-                                                             {0, 0, 0, 0},
-                                                             {0, 0, 0, 0}}));
-    _BlockList[S].setShape(S, std::vector<std::vector<int>>({{0, 1, 1, 0},
-                                                             {1, 1, 0, 0},
-                                                             {0, 0, 0, 0},
-                                                             {0, 0, 0, 0}}));
-    _BlockList[J].setShape(J, std::vector<std::vector<int>>({{1, 1, 1, 0},
-                                                             {0, 0, 1, 0},
-                                                             {0, 0, 0, 0},
-                                                             {0, 0, 0, 0}}));
-    _BlockList[L].setShape(L, std::vector<std::vector<int>>({{1, 1, 1, 0},
-                                                             {1, 0, 0, 0},
-                                                             {0, 0, 0, 0},
-                                                             {0, 0, 0, 0}}));
-    _BlockList[T].setShape(T, std::vector<std::vector<int>>({{1, 1, 1, 0},
-                                                             {0, 1, 0, 0},
-                                                             {0, 0, 0, 0},
-                                                             {0, 0, 0, 0}}));
+    loadBlocksFromFile("Data/BlockData.txt", _BlockList);
 
     // 대기열 초기화
     for (int i = 0; i < 2; i++)
-        _BlockQueue[i] = _BlockList[random_0_6()];
+    {
+        BlockType type = static_cast<BlockType>(random_0_6());
+        if (_BlockList.find(type) != _BlockList.end())
+        {
+            _BlockQueue[i] = _BlockList[type];
+        }
+        else
+        {
+            std::cerr << "Error: Block type not found in BlockList" << std::endl;
+        }
+    }
 
     initscr();             // ncurses 모드 시작
     cbreak();              // 버퍼링 없이 즉시 입력 받음
@@ -57,67 +113,9 @@ void GameManager::start(void)
 bool GameManager::update(void)
 {
     /* 게임 구동 */
-    if (isCollision(Vector2D(0, 0), _PlayableBlock, _Board) == false)
-    {
-        _Board.display(_PlayableBlock);
-        _Board.print();
-        _Board._refresh(_PlayableBlock);
-    }
-    else
-    {
-        return true;
-    }
-
-    // 키를 입력 받고
-    // <-, -> 로 블럭 이동
-    // space 로 블럭 회전
+    // 키를 입력 받고 처리
     int ch = getch();
-
-    switch (ch)
-    {
-    case KEY_UP:
-        /* code */
-        break;
-    case KEY_DOWN:
-        if (isCollision(Vector2D(0, 1), _PlayableBlock, _Board) == false)
-        {
-            _PlayableBlock.gravity(1);
-            _Board.display(_PlayableBlock);
-            _Board.print();
-            _Board._refresh(_PlayableBlock);
-        }
-        break;
-    case KEY_LEFT:
-        if (isCollision(Vector2D(-1, 0), _PlayableBlock, _Board) == false)
-        {
-            _PlayableBlock.move(Vector2D(-1, 0));
-            _Board.display(_PlayableBlock);
-            _Board.print();
-            _Board._refresh(_PlayableBlock);
-        }
-        break;
-    case KEY_RIGHT:
-        if (isCollision(Vector2D(1, 0), _PlayableBlock, _Board) == false)
-        {
-            _PlayableBlock.move(Vector2D(1, 0));
-            _Board.display(_PlayableBlock);
-            _Board.print();
-            _Board._refresh(_PlayableBlock);
-        }
-        break;
-    case ' ': // is Space bar key
-        if (isCollision(Vector2D(0, 0), Block(_PlayableBlock.rotate(), _PlayableBlock.getPos()), _Board) == false)
-        {
-            _PlayableBlock.setShape(_PlayableBlock.getType(), _PlayableBlock.rotate());
-            _Board.display(_PlayableBlock);
-            _Board.print();
-            _Board._refresh(_PlayableBlock);
-        }
-        break;
-    case 27: // is ESC key
-        /* code */
-        break;
-    }
+    processKeyInput(ch, _PlayableBlock, _Board);
 
     // 블럭이 바닥 또는 다른 블럭에 닿지 않았다.
     if (isCollision(Vector2D(0, 1), _PlayableBlock, _Board) == false)
@@ -129,17 +127,21 @@ bool GameManager::update(void)
     {
         _Board.display(_PlayableBlock);
         _BlockQueue[0] = _BlockQueue[1];
-        _BlockQueue[1] = _BlockList[random_0_6()];
+        _BlockQueue[1] = _BlockList[static_cast<BlockType>(random_0_6())];
     }
-    return false;
+
+    /* 게임 종료 여부 체크 */
+    bool isOver = isGameOver();
+    return isOver;
 }
 
 bool GameManager::isCollision(Vector2D<int> dir, Block obj, Board &spc)
 {
     // std::cout << spc.getRow() << spc.getCol() << std::endl;
     // 1. 이동 방향으로 블럭의 복사본을 공간 복사본으로 이동 시킨다.
-    obj.setPosX(obj.getPosX() + dir.getPosX());
-    obj.setPosY(obj.getPosY() + dir.getPosY());
+    // obj.setPosX(obj.getPosX() + dir.getPosX());
+    // obj.setPosY(obj.getPosY() + dir.getPosY());
+    obj.setPos(obj.getPos() + dir);
 
     for (int i = 0; i < obj.getHeight(); i++)
     {
@@ -172,5 +174,76 @@ bool GameManager::isCollision(Vector2D<int> dir, Block obj, Board &spc)
     return false;
 }
 
-// 벽면에 붙어서 블럭을 회전시키면 에러 발생
-// 테트리스 실행 파일로 게임을 실행했을 때 스페이스 바 사용 불가능
+// 회전 시 블럭 또는 벽을 무시해 뚫고 지나가거나 걸리는 버그 발생
+// 1. 블록 회전 전에 블록 충돌 여부를 확인하는 코드에 문제가 있는지 확인한다.
+
+std::string cleanLine(const std::string &line)
+{
+    std::string clean;
+    for (char c : line)
+    {
+        if (!isspace(c))
+            clean += c;
+    }
+    return clean;
+}
+
+void GameManager::loadBlocksFromFile(const std::string &filename, std::map<BlockType, Block> &blockList)
+{
+    std::ifstream file(filename);
+    std::string line;
+    while (std::getline(file, line))
+    {
+        line = cleanLine(line);
+        if (line.empty())
+            continue;
+        BlockType blockType = charToBlockType(line[0]);
+        std::string shapeStr = line.substr(2);
+        blockList[blockType].setShape(blockType, parseShape(shapeStr));
+    }
+}
+
+std::vector<std::vector<int>> GameManager::parseShape(const std::string &shapeStr)
+{
+    std::vector<std::vector<int>> shape;
+    std::istringstream ss(shapeStr);
+    std::string row;
+
+    while (std::getline(ss, row, ';'))
+    {
+        std::vector<int> rowVector;
+        std::istringstream rowStream(row);
+        std::string cell;
+        while (std::getline(rowStream, cell, ','))
+        {
+            rowVector.push_back(std::stoi(cell));
+        }
+        shape.push_back(rowVector);
+    }
+
+    return shape;
+}
+
+BlockType GameManager::charToBlockType(char c)
+{
+    switch (c)
+    {
+    case 'I':
+        return BlockType::I;
+    case 'O':
+        return BlockType::O;
+    case 'T':
+        return BlockType::T;
+    case 'S':
+        return BlockType::S;
+    case 'Z':
+        return BlockType::Z;
+    case 'J':
+        return BlockType::J;
+    case 'L':
+        return BlockType::L;
+    default:
+        throw std::invalid_argument("Invalid block type character");
+    }
+}
+

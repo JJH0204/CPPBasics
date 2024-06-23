@@ -6,6 +6,10 @@
 #else
 #include <ncurses.h>
 #endif
+#include <map>
+#include <fstream>
+#include <sstream>
+#include <vector>
 
 #include "Board.hpp"
 #include "Block.hpp"
@@ -13,12 +17,11 @@
 #ifndef __GAMEMANAGER__
 #define __GAMEMANAGER__
 
-
 class GameManager
 {
 private:
     Board _Board;
-    Block _BlockList[7];
+    std::map<BlockType, Block> _BlockList;
     Block _BlockQueue[2];
     Block &_PlayableBlock = _BlockQueue[0];
     int _GameTime;
@@ -33,7 +36,11 @@ public:
     bool update();
 
     bool isCollision(Vector2D<int> dir, Block obj, Board &spc);
-
+    void processKeyInput(int key, Block &playableBlock, Board &board);
+    bool isGameOver();
+    void loadBlocksFromFile(const std::string &filename, std::map<BlockType, Block> &blockList);
+    std::vector<std::vector<int>> parseShape(const std::string &shapeStr);
+    BlockType charToBlockType(char c);
     // void keyInput();
 };
 
