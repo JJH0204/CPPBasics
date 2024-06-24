@@ -10,7 +10,7 @@
                     "-S",
                     "${workspaceFolder}",
                     "-B",
-                    "${workspaceFolder}/build/GCC 8.1.0 x86_64-w64-mingw32",
+                    "${workspaceFolder}/build/GCC 14.1.0 x86_64-w64-mingw32",
                     "-G",
                     "Ninja"
                 ]
@@ -37,7 +37,7 @@
                 "command": "cmake",
                 "args": [
                     "--build",
-                    "${workspaceFolder}\\build\\GCC 8.1.0 x86_64-w64-mingw32"
+                    "${workspaceFolder}\\build\\GCC 14.1.0 x86_64-w64-mingw32"
                 ]
             },
             "osx": {

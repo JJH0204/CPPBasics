@@ -1,6 +1,6 @@
 #include "Board.hpp"
 
-#ifdef _WIN32
+#ifdef WIN32
 #include <curses.h>
 #else
 #include <ncurses.h>

@@ -1,15 +1,16 @@
 #include <iostream>
 #include <chrono>
 #include <random>
-#ifdef _WIN32
-#include <curses.h>
-#else
-#include <ncurses.h>
-#endif
 #include <map>
 #include <fstream>
 #include <sstream>
 #include <vector>
+
+#ifdef WIN32
+#include <curses.h>
+#else
+#include <ncurses.h>
+#endif
 
 #include "Board.hpp"
 #include "Block.hpp"

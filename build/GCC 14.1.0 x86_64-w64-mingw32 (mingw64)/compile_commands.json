@@ -1,0 +1,56 @@
+[
+{
+  "directory": "E:/Document/GitHub/CPPBasics/build/GCC 14.1.0 x86_64-w64-mingw32 (mingw64)",
+  "command": "C:\\PROGRA~1\\msys64\\mingw64\\bin\\g++.exe -IE:/Document/GitHub/CPPBasics/Basics/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o Basics\\CMakeFiles\\Cpp_example.dir\\example.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\Basics\\example.cpp",
+  "file": "E:\\Document\\GitHub\\CPPBasics\\Basics\\example.cpp",
+  "output": "Basics\\CMakeFiles\\Cpp_example.dir\\example.cpp.obj"
+},
+{
+  "directory": "E:/Document/GitHub/CPPBasics/build/GCC 14.1.0 x86_64-w64-mingw32 (mingw64)",
+  "command": "C:\\PROGRA~1\\msys64\\mingw64\\bin\\g++.exe -IE:/Document/GitHub/CPPBasics/Basics/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o Basics\\CMakeFiles\\Cpp_example.dir\\source\\includeBasics.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\Basics\\source\\includeBasics.cpp",
+  "file": "E:\\Document\\GitHub\\CPPBasics\\Basics\\source\\includeBasics.cpp",
+  "output": "Basics\\CMakeFiles\\Cpp_example.dir\\source\\includeBasics.cpp.obj"
+},
+{
+  "directory": "E:/Document/GitHub/CPPBasics/build/GCC 14.1.0 x86_64-w64-mingw32 (mingw64)",
+  "command": "C:\\PROGRA~1\\msys64\\mingw64\\bin\\g++.exe -IE:/Document/GitHub/CPPBasics/OOP/OOP -IE:/Document/GitHub/CPPBasics/OOP/PRIVATE -IE:/Document/GitHub/CPPBasics/OOP/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o OOP\\CMakeFiles\\OOP.dir\\OOP.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\OOP\\OOP.cpp",
+  "file": "E:\\Document\\GitHub\\CPPBasics\\OOP\\OOP.cpp",
+  "output": "OOP\\CMakeFiles\\OOP.dir\\OOP.cpp.obj"
+},
+{
+  "directory": "E:/Document/GitHub/CPPBasics/build/GCC 14.1.0 x86_64-w64-mingw32 (mingw64)",
+  "command": "C:\\PROGRA~1\\msys64\\mingw64\\bin\\g++.exe -IE:/Document/GitHub/CPPBasics/OOP/OOP -IE:/Document/GitHub/CPPBasics/OOP/PRIVATE -IE:/Document/GitHub/CPPBasics/OOP/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o OOP\\CMakeFiles\\OOP.dir\\source\\includeNode.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\OOP\\source\\includeNode.cpp",
+  "file": "E:\\Document\\GitHub\\CPPBasics\\OOP\\source\\includeNode.cpp",
+  "output": "OOP\\CMakeFiles\\OOP.dir\\source\\includeNode.cpp.obj"
+},
+{
+  "directory": "E:/Document/GitHub/CPPBasics/build/GCC 14.1.0 x86_64-w64-mingw32 (mingw64)",
+  "command": "C:\\PROGRA~1\\msys64\\mingw64\\bin\\g++.exe -IE:/Document/GitHub/CPPBasics/OOP/OOP -IE:/Document/GitHub/CPPBasics/OOP/PRIVATE -IE:/Document/GitHub/CPPBasics/OOP/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o OOP\\CMakeFiles\\OOP.dir\\source\\includeOOP.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\OOP\\source\\includeOOP.cpp",
+  "file": "E:\\Document\\GitHub\\CPPBasics\\OOP\\source\\includeOOP.cpp",
+  "output": "OOP\\CMakeFiles\\OOP.dir\\source\\includeOOP.cpp.obj"
+},
+{
+  "directory": "E:/Document/GitHub/CPPBasics/build/GCC 14.1.0 x86_64-w64-mingw32 (mingw64)",
+  "command": "C:\\PROGRA~1\\msys64\\mingw64\\bin\\g++.exe -IE:/Document/GitHub/CPPBasics/Tetris/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o Tetris\\CMakeFiles\\Tetris.dir\\main.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\Tetris\\main.cpp",
+  "file": "E:\\Document\\GitHub\\CPPBasics\\Tetris\\main.cpp",
+  "output": "Tetris\\CMakeFiles\\Tetris.dir\\main.cpp.obj"
+},
+{
+  "directory": "E:/Document/GitHub/CPPBasics/build/GCC 14.1.0 x86_64-w64-mingw32 (mingw64)",
+  "command": "C:\\PROGRA~1\\msys64\\mingw64\\bin\\g++.exe -IE:/Document/GitHub/CPPBasics/Tetris/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o Tetris\\CMakeFiles\\Tetris.dir\\source\\Block.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\Block.cpp",
+  "file": "E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\Block.cpp",
+  "output": "Tetris\\CMakeFiles\\Tetris.dir\\source\\Block.cpp.obj"
+},
+{
+  "directory": "E:/Document/GitHub/CPPBasics/build/GCC 14.1.0 x86_64-w64-mingw32 (mingw64)",
+  "command": "C:\\PROGRA~1\\msys64\\mingw64\\bin\\g++.exe -IE:/Document/GitHub/CPPBasics/Tetris/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o Tetris\\CMakeFiles\\Tetris.dir\\source\\Board.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\Board.cpp",
+  "file": "E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\Board.cpp",
+  "output": "Tetris\\CMakeFiles\\Tetris.dir\\source\\Board.cpp.obj"
+},
+{
+  "directory": "E:/Document/GitHub/CPPBasics/build/GCC 14.1.0 x86_64-w64-mingw32 (mingw64)",
+  "command": "C:\\PROGRA~1\\msys64\\mingw64\\bin\\g++.exe -IE:/Document/GitHub/CPPBasics/Tetris/include -g -DDEBUG -g -std=gnu++17 -finput-charset=UTF-8 -o Tetris\\CMakeFiles\\Tetris.dir\\source\\GameManager.cpp.obj -c E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\GameManager.cpp",
+  "file": "E:\\Document\\GitHub\\CPPBasics\\Tetris\\source\\GameManager.cpp",
+  "output": "Tetris\\CMakeFiles\\Tetris.dir\\source\\GameManager.cpp.obj"
+}
+]
