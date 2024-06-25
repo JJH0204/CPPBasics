@@ -1,5 +1,5 @@
 #include "Board.hpp"
-
+// #include <ncurses.h>
 #ifdef WIN32
 #include <curses.h>
 #else

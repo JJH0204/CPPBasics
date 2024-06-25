@@ -5,7 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-
+// #include <ncurses.h>
 #ifdef WIN32
 #include <curses.h>
 #else
