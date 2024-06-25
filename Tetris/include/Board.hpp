@@ -1,8 +1,5 @@
-#ifndef __BOARD__
-#define __BOARD__
-
-#include <iostream>
-#include <vector>
+#pragma once
+#include "SystemManager.hpp"
 #include "Block.hpp"
 
 class Board
@@ -22,11 +19,7 @@ public:
     void setRow(int Row) { _nRow = Row; }
     void setCol(int Col) { _nCol = Col; }
 
-    // void merge(Block &block) const;
     void print() const;
     void display(Block block);
     void _refresh(Block block);
-
-    // bool isFullOfCols();
 };
-#endif

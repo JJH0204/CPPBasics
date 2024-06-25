@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Block.hpp"
 
 Block::Block() : _width(4), _height(4), _shape(4, std::vector<int>(4, 0)) {}
@@ -72,4 +71,43 @@ std::vector<std::vector<int>> Block::rotate()
     // 3. 기존 모양에 대입
     // 회전 블록 반환
     return rotateBlock;
+}
+
+bool Block::isCollision(Vector2D<int> dir, auto &spc)
+{
+    // std::cout << spc.getRow() << spc.getCol() << std::endl;
+    // 1. 이동 방향으로 블럭의 복사본을 공간 복사본으로 이동 시킨다.
+    // obj.setPosX(obj.getPosX() + dir.getPosX());
+    // obj.setPosY(obj.getPosY() + dir.getPosY());
+    this->setPos(this->getPos() + dir);
+
+    for (int i = 0; i < this->getHeight(); i++)
+    {
+        for (int j = 0; j < this->getWidth(); j++)
+        {
+            if (this->getShape()[i][j] == 1)
+            {
+                // 블럭이 벽에 충돌되었는지 바닥에 충돌되었는지 다른 블럭과 출돌되었는지 확인하면 됨
+                // std::cout << spc.getRow() << spc.getCol() << std::endl;
+                if ((this->getPosY() + i) >= spc.getCol() || (this->getPosY() + i) < 0)
+                {
+                    // std::cout << "case 1" << std::endl;
+                    return true;
+                }
+
+                if ((this->getPosX() + j) >= spc.getRow() || (this->getPosX() + j) < 0)
+                {
+                    // std::cout << "case 2" << std::endl;
+                    return true;
+                }
+
+                if (spc.getSpace()[this->getPosY() + i][this->getPosX() + j] == 1)
+                {
+                    // std::cout << "case 3" << std::endl;
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }

@@ -1,7 +1,6 @@
-#ifndef __BLOCK__
-#define __BLOCK__
-
-#include <vector>
+#pragma once
+#include "SystemManager.hpp"
+#include "Board.hpp"
 
 template <typename T>
 class Vector2D
@@ -72,6 +71,6 @@ public:
     void setShape(BlockType type, const std::vector<std::vector<int>> &sourceShape);
     void print() const;
     std::vector<std::vector<int>> rotate();
-};
 
-#endif
+    bool isCollision(Vector2D<int> dir, Board &spc);
+};

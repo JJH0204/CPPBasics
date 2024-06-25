@@ -1,32 +1,6 @@
 /* 테트리스 구현 프로젝트 */
-#include <cstdlib>
-#include <thread>
-
+#include "SystemManager.hpp"
 #include "GameManager.hpp"
-
-void clearScreen()
-{
-#ifdef _WIN32
-    std::system("cls"); // Windows 시스템에서 화면 클리어
-#else
-    std::system("clear"); // Unix/Linux/MacOS 시스템에서 화면 클리어
-#endif
-}
-
-using namespace std::chrono;
-
-void systemPause(milliseconds msPerFrame)
-{
-    /* 현재 시간 기록 */
-    auto frameStart = high_resolution_clock::now();
-    /* 코드 실행 후 시간 기록 */
-    auto frameEnd = high_resolution_clock::now();
-    /* 경과 시간 계산 */
-    auto elapsedTime = frameEnd - frameStart;
-    // 프레임 시간을 유지하기 위해 필요하다면 대기
-    if (elapsedTime < msPerFrame)
-        std::this_thread::sleep_for(msPerFrame - elapsedTime);
-}
 
 int main(int argc, char *argv[])
 {
@@ -38,12 +12,12 @@ int main(int argc, char *argv[])
     while (true)
     {
         /* 스크린 초기화 */
-        clearScreen();
+        SystemManager().cleanScreen();
         /* 게임 진행 */
         if (_GameManger.update())
             break;
         /* 루프 속도 제어 */
-        systemPause(milliseconds(_GameManger.getGameTime()));
+        SystemManager().pause(milliseconds(200));
     }
     endwin();   // 터미널 설정을 원래대로 복구
     return 0;

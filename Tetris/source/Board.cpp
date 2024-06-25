@@ -1,11 +1,4 @@
 #include "Board.hpp"
-// #include <ncurses.h>
-#ifdef WIN32
-#include <curses.h>
-#else
-#include <ncurses.h>
-#endif
-// #include "Block.hpp"
 
 Board::Board() : _nRow(10), _nCol(20), _space(_nCol, std::vector<int>(_nRow, 0)) {}
 Board::~Board() {}
