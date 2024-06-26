@@ -1,4 +1,32 @@
+#include <iostream>
+#include <chrono>
+#include <random> /* 임의의 난수 생성을 위한 라이브러리 */
+// #include <string>
+// #include <map>
+// #include <vector>
+#include <fstream>
+// #include <sstream>
+// #include <cstdlib>
+#include <thread>
+
+#include <ncurses.h> /* 터미널 제어용 외부 라이브러리 */
+
+// #include "Block.hpp"
+// #include "Board.hpp"
+
 #include "SystemManager.hpp"
+
+using namespace std::chrono;
+using namespace obj;
+
+void SystemManager::setTerminal(void)
+{
+    initscr();             // ncurses 모드 시작
+    cbreak();              // 버퍼링 없이 즉시 입력 받음
+    noecho();              // 입력한 키를 화면에 표시하지 않음
+    keypad(stdscr, TRUE);  // 특수 키 활성화
+    nodelay(stdscr, TRUE); // getch()가 블로킹 되지 않도록 설정
+}
 
 int SystemManager::intRandom06()
 {
@@ -52,23 +80,33 @@ std::string SystemManager::cleanLine(const std::string &line)
     return clean;
 }
 
-void SystemManager::loadBlocksFromFile(const std::string &filename, std::map<BlockType, Block> &blockList)
+int SystemManager::loadBlocksFromFile(const std::string &filename, std::map<char, Block> &blockList)
 {
+    /* 지정된 경로의 파일 열기 */
     std::ifstream file(filename);
+
+    /* 제데로 열였는지 확인 */
+    if (!file.is_open())
+    {
+        std::cerr << "파일을 여는데 실패했습니다." << filename << std::endl;
+        return 1;               // error code 1
+    }
+
     std::string line;
     while (std::getline(file, line))
     {
         line = cleanLine(line);
         if (line.empty())
             continue;
-        BlockType blockType = charToBlockType(line[0]);
+        char blockType = line[0];
         std::string shapeStr = line.substr(2);
-        blockList[blockType].setShape(blockType, parseShape(shapeStr));
+        blockList[blockType].setShape(parseShape(shapeStr));
     }
 }
 
 std::vector<std::vector<int>> SystemManager::parseShape(const std::string &shapeStr)
 {
+    std::cout << shapeStr << std::endl;
     std::vector<std::vector<int>> shape;
     std::istringstream ss(shapeStr);
     std::string row;
@@ -88,25 +126,3 @@ std::vector<std::vector<int>> SystemManager::parseShape(const std::string &shape
     return shape;
 }
 
-BlockType SystemManager::charToBlockType(char c)
-{
-    switch (c)
-    {
-    case 'I':
-        return BlockType::I;
-    case 'O':
-        return BlockType::O;
-    case 'T':
-        return BlockType::T;
-    case 'S':
-        return BlockType::S;
-    case 'Z':
-        return BlockType::Z;
-    case 'J':
-        return BlockType::J;
-    case 'L':
-        return BlockType::L;
-    default:
-        throw std::invalid_argument("Invalid block type character");
-    }
-}

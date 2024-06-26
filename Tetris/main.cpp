@@ -1,6 +1,11 @@
 /* 테트리스 구현 프로젝트 */
-#include "SystemManager.hpp"
+#include <ncurses.h>
+#include <chrono>
+
 #include "GameManager.hpp"
+#include "SystemManager.hpp"
+
+using namespace std::chrono;
 
 int main(int argc, char *argv[])
 {

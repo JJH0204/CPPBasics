@@ -1,4 +1,8 @@
-#include "Block.hpp"
+#include <iostream>
+#include <ncurses.h>
+#include "ObjectManager.hpp"
+
+using namespace obj;
 
 Block::Block() : _width(4), _height(4), _shape(4, std::vector<int>(4, 0)) {}
 
@@ -9,15 +13,9 @@ Block::Block(std::vector<std::vector<int>> shape, Vector2D pos) : _shape(shape)
 
 Block::~Block() {}
 
-void Block::setShape(BlockType type, const std::vector<std::vector<int>> &sourceShape)
-{
-    _type = type;
-    _shape = sourceShape;
-}
-
 void Block::print() const
 {
-    std::cout << blockTypeNames[_type] << std::endl;
+    // std::cout << blockTypeNames[_type] << std::endl;
 
     for (const auto &cols : _shape)
     {
@@ -73,13 +71,14 @@ std::vector<std::vector<int>> Block::rotate()
     return rotateBlock;
 }
 
-bool Block::isCollision(Vector2D<int> dir, auto &spc)
+bool Block::isCollision(Vector2D<int> dir, Board &spc)
 {
     // std::cout << spc.getRow() << spc.getCol() << std::endl;
     // 1. 이동 방향으로 블럭의 복사본을 공간 복사본으로 이동 시킨다.
     // obj.setPosX(obj.getPosX() + dir.getPosX());
     // obj.setPosY(obj.getPosY() + dir.getPosY());
-    this->setPos(this->getPos() + dir);
+    // this->setPos(this->getPos() + dir); // 먼저 이동을 해버려서 문제다
+    Vector2D<int> pos = this->getPos() + dir;
 
     for (int i = 0; i < this->getHeight(); i++)
     {
@@ -89,19 +88,19 @@ bool Block::isCollision(Vector2D<int> dir, auto &spc)
             {
                 // 블럭이 벽에 충돌되었는지 바닥에 충돌되었는지 다른 블럭과 출돌되었는지 확인하면 됨
                 // std::cout << spc.getRow() << spc.getCol() << std::endl;
-                if ((this->getPosY() + i) >= spc.getCol() || (this->getPosY() + i) < 0)
+                if ((pos.getPosY() + i) >= spc.getCol() || (pos.getPosY() + i) < 0)
                 {
                     // std::cout << "case 1" << std::endl;
                     return true;
                 }
 
-                if ((this->getPosX() + j) >= spc.getRow() || (this->getPosX() + j) < 0)
+                if ((pos.getPosX() + j) >= spc.getRow() || (pos.getPosX() + j) < 0)
                 {
                     // std::cout << "case 2" << std::endl;
                     return true;
                 }
 
-                if (spc.getSpace()[this->getPosY() + i][this->getPosX() + j] == 1)
+                if (spc.getSpace()[pos.getPosY() + i][pos.getPosX() + j] == 1)
                 {
                     // std::cout << "case 3" << std::endl;
                     return true;
@@ -110,4 +109,65 @@ bool Block::isCollision(Vector2D<int> dir, auto &spc)
         }
     }
     return false;
+}
+
+Board::Board() : _nRow(10), _nCol(20), _space(_nCol, std::vector<int>(_nRow, 0)) {}
+Board::~Board() {}
+
+// void Board::merge(Block &block) const {}
+
+void Board::print() const
+{
+    clear();                        // ncurses 화면 청소
+    mvprintw(0, 0, "############"); // 상단 테두리 출력
+
+    int row = 1; // 출력 시작 행을 1로 설정
+    for (const auto &cols : _space)
+    {
+        move(row, 0); // 커서 이동
+        addch('#');   // 왼쪽 테두리 출력
+
+        for (int elem : cols)
+            addch((elem == 1) ? '@' : ' '); // 각 좌표의 셀 출력
+
+        addch('#'); // 오른쪽 테두리 출력
+        row++;      // 다음 행 이동
+    }
+    mvprintw(row, 0, "############"); // 하단 테두리 출력
+
+    refresh(); // 모든 변경사항을 화면에 반영
+}
+
+void Board::display(Block block)
+{
+    int x = block.getPosX();
+    int y = block.getPosY();
+
+    for (int i = 0; i < block.getHeight(); i++)
+    {
+        for (int j = 0; j < block.getWidth(); j++)
+        {
+            if ((block.getShape()[i][j] > 0))
+            {
+                _space[i + y][j + x] = block.getShape()[i][j];
+            }
+        }
+    }
+}
+
+void Board::_refresh(Block block)
+{
+    int x = block.getPosX();
+    int y = block.getPosY();
+
+    for (int i = 0; i < block.getHeight(); i++)
+    {
+        for (int j = 0; j < block.getWidth(); j++)
+        {
+            if ((block.getShape()[i][j] > 0) && (block.getShape()[i][j] == _space[i + y][j + x]))
+            {
+                _space[i + y][j + x] = 0;
+            }
+        }
+    }
 }

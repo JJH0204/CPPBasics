@@ -1,11 +1,14 @@
 #pragma once
-#include "SystemManager.hpp"
+#include <map>
+#include "ObjectManager.hpp"
+
+using namespace obj;
 
 class GameManager
 {
 private:
     Board _Board;
-    std::map<BlockType, Block> _BlockList;
+    std::map<char, Block> _BlockList;
     Block _BlockQueue[2];
     Block &_PlayableBlock = _BlockQueue[0];
 

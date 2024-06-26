@@ -15,12 +15,3 @@ target_link_libraries(Tetris PRIVATE ${CURSES_LIBRARIES})
 
 # 추가 라이브러리 링크 혹은 옵션 지정
 target_include_directories(Tetris PRIVATE ${CURSES_INCLUDE_DIR} include)
-
-if(WIN32)
-    # Windows 설정
-    # include_directories("C:\\Program Files\\msys64\\mingw64\\include\\ncurses")
-
-elseif(APPLE)
-    # Mac 설정
-
-endif()

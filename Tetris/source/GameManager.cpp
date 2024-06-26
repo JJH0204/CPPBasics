@@ -1,16 +1,22 @@
+#include <iostream>
+#include <ncurses.h>
+
+#include "SystemManager.hpp"
 #include "GameManager.hpp"
+
+using namespace obj;
 
 void GameManager::start(void)
 {
-    SystemManager().loadBlocksFromFile("Data/BlockData.txt", _BlockList);
+    SystemManager().loadBlocksFromFile("/Users/admin/Documents/GitHub/CPPBasics/Tetris/Data/BlockData.txt", _BlockList);
 
     // 대기열 초기화
     for (int i = 0; i < 2; i++)
     {
-        BlockType type = static_cast<BlockType>(SystemManager().intRandom06());
-        if (_BlockList.find(type) != _BlockList.end())
+        const char index = blockTypeNames[SystemManager().intRandom06()];
+        if (_BlockList.find(index) != _BlockList.end())
         {
-            _BlockQueue[i] = _BlockList[type];
+            _BlockQueue[i] = _BlockList[index];
         }
         else
         {
@@ -18,11 +24,7 @@ void GameManager::start(void)
         }
     }
 
-    initscr();             // ncurses 모드 시작
-    cbreak();              // 버퍼링 없이 즉시 입력 받음
-    noecho();              // 입력한 키를 화면에 표시하지 않음
-    keypad(stdscr, TRUE);  // 특수 키 활성화
-    nodelay(stdscr, TRUE); // getch()가 블로킹 되지 않도록 설정
+    SystemManager().setTerminal();
 }
 
 bool GameManager::update(void)
@@ -33,7 +35,7 @@ bool GameManager::update(void)
     processKeyInput(ch, _PlayableBlock, _Board);
 
     // 블럭이 바닥 또는 다른 블럭에 닿지 않았다.
-    if (_PlayableBlock.isCollision(Vector2D(0, 1), _Board) == false)
+    if (!_PlayableBlock.isCollision(Vector2D(0, 1), _Board))
     {
         _PlayableBlock.gravity(1);
     }
@@ -42,7 +44,7 @@ bool GameManager::update(void)
     {
         _Board.display(_PlayableBlock);
         _BlockQueue[0] = _BlockQueue[1];
-        _BlockQueue[1] = _BlockList[static_cast<BlockType>(SystemManager().intRandom06())];
+        _BlockQueue[1] = _BlockList[blockTypeNames[SystemManager().intRandom06()]];
     }
 
     /* 게임 종료 여부 체크 */
@@ -88,7 +90,7 @@ void GameManager::processKeyInput(int key, Block &playableBlock, Board &board)
     case ' ': // Space bar
         if (!Block(playableBlock.rotate(), playableBlock.getPos()).isCollision(Vector2D(0, 0), board))
         {
-            playableBlock.setShape(playableBlock.getType(), playableBlock.rotate());
+            playableBlock.setShape(playableBlock.rotate());
             shouldUpdate = true;
         }
         break;
