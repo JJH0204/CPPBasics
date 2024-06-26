@@ -17,12 +17,12 @@ int main(int argc, char *argv[])
     while (true)
     {
         /* 스크린 초기화 */
-        SystemManager().cleanScreen();
+        SysManager::cleanScreen();
         /* 게임 진행 */
         if (_GameManger.update())
             break;
         /* 루프 속도 제어 */
-        SystemManager().pause(milliseconds(200));
+        SysManager::pause(milliseconds(120));
     }
     endwin();   // 터미널 설정을 원래대로 복구
     return 0;

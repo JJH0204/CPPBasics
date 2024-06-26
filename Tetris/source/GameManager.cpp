@@ -8,12 +8,12 @@ using namespace obj;
 
 void GameManager::start(void)
 {
-    SystemManager().loadBlocksFromFile("/Users/admin/Documents/GitHub/CPPBasics/Tetris/Data/BlockData.txt", _BlockList);
+    SysManager::loadBlocksFromFile("/Users/admin/Documents/GitHub/CPPBasics/Tetris/Data/BlockData.txt", _BlockList);
 
     // 대기열 초기화
     for (int i = 0; i < 2; i++)
     {
-        const char index = blockTypeNames[SystemManager().intRandom06()];
+        const char index = blockTypeNames[SysManager::intRandom06()];
         if (_BlockList.find(index) != _BlockList.end())
         {
             _BlockQueue[i] = _BlockList[index];
@@ -24,7 +24,7 @@ void GameManager::start(void)
         }
     }
 
-    SystemManager().setTerminal();
+    SysManager::setTerminal();
 
     this->setPoint(0);
 }
@@ -46,7 +46,7 @@ bool GameManager::update(void)
     {
         _Board.display(_PlayableBlock);
         _BlockQueue[0] = _BlockQueue[1];
-        _BlockQueue[1] = _BlockList[blockTypeNames[SystemManager().intRandom06()]];
+        _BlockQueue[1] = _BlockList[blockTypeNames[SysManager::intRandom06()]];
     }
 
     /* 점수 획득 여부 확인 */
@@ -120,5 +120,5 @@ void GameManager::processKeyInput(int key, Block &playableBlock, Board &board)
         board._refresh(playableBlock);
     }
 
-    SystemManager().flushInputBuffer(); // 모든 입력 후에 한 번만 버퍼를 플러시
+    SysManager::flushInputBuffer(); // 모든 입력 후에 한 번만 버퍼를 플러시
 }

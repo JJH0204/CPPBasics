@@ -9,7 +9,7 @@
 using namespace std::chrono;
 using namespace obj;
 
-void SystemManager::setTerminal(void)
+void SysManager::setTerminal(void)
 {
     initscr();             // ncurses 모드 시작
     cbreak();              // 버퍼링 없이 즉시 입력 받음
@@ -18,7 +18,7 @@ void SystemManager::setTerminal(void)
     nodelay(stdscr, TRUE); // getch()가 블로킹 되지 않도록 설정
 }
 
-int SystemManager::intRandom06()
+int SysManager::intRandom06()
 {
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count(); // 현재 시간을 시드로 설정
 
@@ -28,7 +28,7 @@ int SystemManager::intRandom06()
     return dis(gen); // 값 생성(반환)
 }
 
-void SystemManager::flushInputBuffer()
+void SysManager::flushInputBuffer()
 {
     int ch;                       // 버퍼에 문자 값을 저장할 변수
     while ((ch = getch()) != ERR) // 버퍼에 저장된 값이 없을 때까지 값 읽기 반복
@@ -37,7 +37,7 @@ void SystemManager::flushInputBuffer()
     }
 }
 
-void SystemManager::cleanScreen()
+void SysManager::cleanScreen()
 {
 #ifdef _WIN32
     std::system("cls"); // Windows 시스템에서 화면 클리어
@@ -46,7 +46,7 @@ void SystemManager::cleanScreen()
 #endif
 }
 
-void SystemManager::pause(milliseconds msPerFrame)
+void SysManager::pause(milliseconds msPerFrame)
 {
     /* 현재 시간 기록 */
     auto frameStart = high_resolution_clock::now();
@@ -60,7 +60,7 @@ void SystemManager::pause(milliseconds msPerFrame)
 }
 
 /* 문자열의 모든 공백 문자 제거 함수 */
-std::string SystemManager::cleanLine(const std::string &line)
+std::string SysManager::cleanLine(const std::string &line)
 {
     std::string clean;  // 공백 제거 결과 저장 변수
     for (char c : line) // 모든 문자(컨테이너)를 순회할 때까지 반복
@@ -71,7 +71,7 @@ std::string SystemManager::cleanLine(const std::string &line)
     return clean; // 루프 종료 후 반환
 }
 
-int SystemManager::loadBlocksFromFile(const std::string &filename, std::map<char, Block> &blockList)
+int SysManager::loadBlocksFromFile(const std::string &filename, std::map<char, Block> &blockList)
 {
     /* 지정된 경로의 파일 열기 */
     std::ifstream file(filename);
@@ -87,17 +87,17 @@ int SystemManager::loadBlocksFromFile(const std::string &filename, std::map<char
     std::string line;
     while (std::getline(file, line))    // 파일의 문자열 읽기
     {
-        line = cleanLine(line);         // 문자열에 공백 제거
+        line = SysManager::cleanLine(line);         // 문자열에 공백 제거
         if (line.empty())               // 읽은 문자열이 비어있는 경우 반복문 처음으로
             continue;
         char blockType = line[0];       // 블럭 모양 식별자 저장
         std::string shapeStr = line.substr(2);  // 식별자 이후 블럭 모양 데이터 저장
-        blockList[blockType].setShape(parseShape(shapeStr));    // 저장된 블럭 모양 데이터를 vector<vector<int>> 형태로 변환
+        blockList[blockType].setShape(SysManager::parseShape(shapeStr)); // 저장된 블럭 모양 데이터를 vector<vector<int>> 형태로 변환
     }
 }
 
 /* 1차원 문자열 데이터를 가공해 vector<vector<int>> 형태로 변환 */
-std::vector<std::vector<int>> SystemManager::parseShape(const std::string &shapeStr)
+std::vector<std::vector<int>> SysManager::parseShape(const std::string &shapeStr)
 {
     // std::cout << shapeStr << std::endl;  // 데이터 확인 용 출력
     std::vector<std::vector<int>> shape;
