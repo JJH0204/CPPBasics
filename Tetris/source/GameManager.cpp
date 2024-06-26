@@ -57,18 +57,17 @@ bool GameManager::update(void)
     
     /* 게임 종료 여부 체크 */
     bool isOver = isGameOver();
+    
+    _Board.display(_PlayableBlock);
+    _Board.print();
+    _Board._refresh(_PlayableBlock);
     return isOver;
 }
 
 bool GameManager::isGameOver()
 {
     if (_PlayableBlock.isCollision(Vector2D(0, 0), _Board) == false)
-    {
-        _Board.display(_PlayableBlock);
-        _Board.print();
-        _Board._refresh(_PlayableBlock);
         return false;
-    }
     return true;
 }
 
@@ -96,14 +95,12 @@ void GameManager::processKeyInput(int key, Block &playableBlock, Board &board)
         movement = Vector2D(1, 0);
         break;
     case ' ': // Space bar
-        if (!Block(playableBlock.rotate(), playableBlock.getPos()).isCollision(Vector2D(0, 0), board))
+        Block tempBlock = Block(playableBlock.rotate(), playableBlock.getPos());
+        if (!tempBlock.isCollision(Vector2D(0, 0), board))
         {
-            playableBlock.setShape(playableBlock.rotate());
+            playableBlock.setShape(tempBlock.getShape());
             shouldUpdate = true;
         }
-        break;
-    case 27: // ESC key
-        // Escape key logic
         break;
     }
 

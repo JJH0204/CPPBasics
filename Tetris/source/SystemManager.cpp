@@ -1,19 +1,9 @@
 #include <iostream>
 #include <chrono>
-#include <random> /* 임의의 난수 생성을 위한 라이브러리 */
-// #include <string>
-// #include <map>
-// #include <vector>
-#include <fstream>
-// #include <sstream>
-// #include <cstdlib>
+#include <random>       /* 임의의 난수 생성을 위한 라이브러리 */
+#include <fstream>      /* 파일 입출력을 위한 라이브러리 */
 #include <thread>
-
-#include <ncurses.h> /* 터미널 제어용 외부 라이브러리 */
-
-// #include "Block.hpp"
-// #include "Board.hpp"
-
+#include <ncurses.h>    /* 터미널 제어용 외부 라이브러리 */
 #include "SystemManager.hpp"
 
 using namespace std::chrono;
