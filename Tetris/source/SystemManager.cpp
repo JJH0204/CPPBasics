@@ -30,18 +30,18 @@ void SystemManager::setTerminal(void)
 
 int SystemManager::intRandom06()
 {
-    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count(); // 현재 시간을 시드로 설정
 
-    std::mt19937 gen(seed);
-    std::uniform_int_distribution<> dis(0, 6);
+    std::mt19937 gen(seed);                    // 시드값을 생성 함수에 전달
+    std::uniform_int_distribution<> dis(0, 6); // 생성 범위 설정
 
-    return dis(gen);
+    return dis(gen); // 값 생성(반환)
 }
 
 void SystemManager::flushInputBuffer()
 {
-    int ch;
-    while ((ch = getch()) != ERR)
+    int ch;                       // 버퍼에 문자 값을 저장할 변수
+    while ((ch = getch()) != ERR) // 버퍼에 저장된 값이 없을 때까지 값 읽기 반복
     {
         // 모든 대기중인 입력을 읽고 무시합니다.
     }
@@ -69,15 +69,16 @@ void SystemManager::pause(milliseconds msPerFrame)
         std::this_thread::sleep_for(msPerFrame - elapsedTime);
 }
 
+/* 문자열의 모든 공백 문자 제거 함수 */
 std::string SystemManager::cleanLine(const std::string &line)
 {
-    std::string clean;
-    for (char c : line)
+    std::string clean;  // 공백 제거 결과 저장 변수
+    for (char c : line) // 모든 문자(컨테이너)를 순회할 때까지 반복
     {
-        if (!isspace(c))
-            clean += c;
+        if (!isspace(c)) // 문자(c)의 값이 공백인지 검사
+            clean += c;  // 공백이 아닌 경우 문자열 끝에 저장
     }
-    return clean;
+    return clean; // 루프 종료 후 반환
 }
 
 int SystemManager::loadBlocksFromFile(const std::string &filename, std::map<char, Block> &blockList)
@@ -89,21 +90,23 @@ int SystemManager::loadBlocksFromFile(const std::string &filename, std::map<char
     if (!file.is_open())
     {
         std::cerr << "파일을 여는데 실패했습니다." << filename << std::endl;
-        return 1;               // error code 1
+        return 1; // error code 1
     }
 
+    /* 문자열 저장 변수 */
     std::string line;
-    while (std::getline(file, line))
+    while (std::getline(file, line))    // 파일의 문자열 읽기
     {
-        line = cleanLine(line);
-        if (line.empty())
+        line = cleanLine(line);         // 문자열에 공백 제거
+        if (line.empty())               // 읽은 문자열이 비어있는 경우 반복문 처음으로
             continue;
-        char blockType = line[0];
-        std::string shapeStr = line.substr(2);
-        blockList[blockType].setShape(parseShape(shapeStr));
+        char blockType = line[0];       // 블럭 모양 식별자 저장
+        std::string shapeStr = line.substr(2);  // 식별자 이후 블럭 모양 데이터 저장
+        blockList[blockType].setShape(parseShape(shapeStr));    // 저장된 블럭 모양 데이터를 vector<vector<int>> 형태로 변환
     }
 }
 
+/* 1차원 문자열 데이터를 가공해 vector<vector<int>> 형태로 변환 */
 std::vector<std::vector<int>> SystemManager::parseShape(const std::string &shapeStr)
 {
     std::cout << shapeStr << std::endl;
@@ -125,4 +128,3 @@ std::vector<std::vector<int>> SystemManager::parseShape(const std::string &shape
 
     return shape;
 }
-
