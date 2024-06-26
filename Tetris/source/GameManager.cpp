@@ -25,6 +25,8 @@ void GameManager::start(void)
     }
 
     SystemManager().setTerminal();
+
+    this->setPoint(0);
 }
 
 bool GameManager::update(void)
@@ -47,6 +49,12 @@ bool GameManager::update(void)
         _BlockQueue[1] = _BlockList[blockTypeNames[SystemManager().intRandom06()]];
     }
 
+    /* 점수 획득 여부 확인 */
+    while(_Board._flush())
+        this->setPoint(this->getPoint() + 1);
+
+    // std::cout << "현재 점수 : " << this->getPoint();     // 게임 UI 하단에 점수도 같이 출력하고 싶은데 이 방법은 아닌 것 같다.
+    
     /* 게임 종료 여부 체크 */
     bool isOver = isGameOver();
     return isOver;

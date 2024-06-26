@@ -85,6 +85,8 @@ namespace obj
         void print() const;
         void display(Block block);
         void _refresh(Block block);
-        bool isCollision(Vector2D<int> dir, Block block);
+        // bool isCollision(Vector2D<int> dir, Block block);
+
+        bool _flush(void);   // 가로 한줄 완성 시 사라지게 하고 true 반환
     };
 }

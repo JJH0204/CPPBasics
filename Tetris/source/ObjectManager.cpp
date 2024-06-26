@@ -171,3 +171,37 @@ void Board::_refresh(Block block)
         }
     }
 }
+
+bool Board::_flush(void)
+{
+    int cols = 0;
+    while (cols < this->getCol())
+    {
+        int rows = 0;
+        while (rows < this->getRow())
+        {
+            if (_space[cols][rows] == 1)
+                rows++;
+            else
+                break;
+        }
+        if (rows == this->getRow())
+            break;
+        else
+            cols++;
+    }
+    if (cols == this->getCol())
+        return false;
+
+    while (cols > 0)
+    {
+        for (int rows = 0; rows < this->getRow(); rows++)
+            _space[cols][rows] = _space[cols - 1][rows];
+        cols--;
+    }
+
+    for (int rows = 0; rows < this->getRow(); rows++)
+        _space[cols][rows] = 0;
+
+    return true;
+}

@@ -109,7 +109,7 @@ int SystemManager::loadBlocksFromFile(const std::string &filename, std::map<char
 /* 1차원 문자열 데이터를 가공해 vector<vector<int>> 형태로 변환 */
 std::vector<std::vector<int>> SystemManager::parseShape(const std::string &shapeStr)
 {
-    std::cout << shapeStr << std::endl;
+    // std::cout << shapeStr << std::endl;  // 데이터 확인 용 출력
     std::vector<std::vector<int>> shape;
     std::istringstream ss(shapeStr);
     std::string row;
